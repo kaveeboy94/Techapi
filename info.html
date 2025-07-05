@@ -738,34 +738,47 @@ select option[value=""] {
   color: #d6d6d6; /* Softer, muted grey for the placeholder */
 }
 </style>
-     <style>
-   @media (max-width: 768px) {
+ <style>
+    /* Existing responsive styles... */
+
+@media (max-width: 768px) {
+  .navbar {
+    flex-direction: column;
+    align-items: stretch;
+    gap: 10px;
+  }
+
   .nav-home-button {
-    display: none;
+    display: none; /* 👈 Hides on mobile */
+  }
+
+  .navbar select {
+    width: 100%;
   }
 }
-  </style>
+
+ </style>
 </head>
 <body>
+<nav class="navbar">
+    <a href="index.html" class="nav-home-button">Home Page</a>
 
-     <nav id="top">
-        <a href="index.html" class="nav-home-button">Home Page</a> <!-- Moved and restyled button -->
-        <select onchange="location = this.value;">
-        <option value="">Select a University</option>
-        <option value="#jayawardenapura">University of Sri Jayewardenepura</option>
-        <option value="#colombo">University of Colombo</option>
-        <option value="#kelaniya">University of Kelaniya</option>
-        <option value="#ruhuna">University of Ruhuna</option>
-        <option value="#wayamba">Wayamba University of Sri Lanka</option>
-        <option value="#wellassa">Uva Wellassa University</option>
-        <option value="#rajarata">Rajarata University of Sri Lanka</option>
-        <option value="#jaffna">University of Jaffna</option>
-        <option value="#eastern">Eastern University, Sri Lanka</option>
-        <option value="#south-eastern">South Eastern University of Sri Lanka</option>
-        <option value="#vavuniya">University of Vavuniya</option>
-        <option value="#sabara">Sabaragamuwa University of Sri Lanka</option>
+    <select onchange="location = this.value;">
+      <option value="">Select a University</option>
+      <option value="#jayawardenapura">University of Sri Jayewardenepura</option>
+      <option value="#colombo">University of Colombo</option>
+      <option value="#kelaniya">University of Kelaniya</option>
+      <option value="#ruhuna">University of Ruhuna</option>
+      <option value="#wayamba">Wayamba University of Sri Lanka</option>
+      <option value="#wellassa">Uva Wellassa University</option>
+      <option value="#rajarata">Rajarata University of Sri Lanka</option>
+      <option value="#jaffna">University of Jaffna</option>
+      <option value="#eastern">Eastern University, Sri Lanka</option>
+      <option value="#south-eastern">South Eastern University of Sri Lanka</option>
+      <option value="#vavuniya">University of Vavuniya</option>
+      <option value="#sabara">Sabaragamuwa University of Sri Lanka</option>
     </select>
-    </nav>
+  </nav>
 
 
     <div class="container hero1">
