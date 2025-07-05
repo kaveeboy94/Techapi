@@ -739,76 +739,11 @@ select option[value=""] {
 }
 </style>
      <style>
-    /* RESET & GLOBAL STYLES */
-    * {
-      margin: 0;
-      padding: 0;
-      box-sizing: border-box;
-    }
-
-    body {
-      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-      background: #f4f9ff;
-    }
-
-    /* NAVBAR STYLES */
-    .navbar {
-      background-color: #2c3e50;
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      padding: 15px 20px;
-      flex-wrap: wrap;
-    }
-
-    .nav-home-button {
-      background-color: #3498db;
-      color: white;
-      text-decoration: none;
-      padding: 10px 16px;
-      border-radius: 8px;
-      font-size: 16px;
-      font-weight: 600;
-      transition: background 0.3s;
-    }
-
-    .nav-home-button:hover {
-      background-color: #2980b9;
-    }
-
-    .navbar select {
-      padding: 10px 12px;
-      border-radius: 8px;
-      border: none;
-      font-size: 16px;
-      color: #333;
-      background-color: #ecf0f1;
-      margin-top: 10px;
-      transition: box-shadow 0.3s;
-    }
-
-    .navbar select:focus {
-      outline: none;
-      box-shadow: 0 0 5px rgba(52, 152, 219, 0.7);
-    }
-
-    /* RESPONSIVE DESIGN */
-    @media (max-width: 768px) {
-      .navbar {
-        flex-direction: column;
-        align-items: stretch;
-        gap: 10px;
-      }
-
-      .nav-home-button {
-        width: 100%;
-        text-align: center;
-      }
-
-      .navbar select {
-        width: 100%;
-      }
-    }
+   @media (max-width: 768px) {
+  .nav-home-button {
+    display: none;
+  }
+}
   </style>
 </head>
 <body>
