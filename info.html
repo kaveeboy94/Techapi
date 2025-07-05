@@ -1,511 +1,949 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Technology Degree Info</title>
-  <link rel="stylesheet" href="style2.css" />
-  <style>
-    body {
-      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-      margin: 0;
-      padding: 20px;
-      background: linear-gradient(to right, #ffffff, #f7f7f7);
-      color: #333;
-      line-height: 1.6;
-    }
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Technology Degree Programs - Sri Lanka</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary-blue: #3498db;
+            --light-blue: #e8f5fd;
+            --dark-blue: #2c3e50;
+            --text-dark: #333;
+            --text-light: #f4f4f4;
+            --grey-bg: #f7f7f7;
+            --white-bg: #ffffff;
+            --gradient-start: #e0f2f7;
+            --gradient-end: #cce7f0;
+            --accent-green: #2ecc71;
+            --shadow-light: 0 4px 15px rgba(0, 0, 0, 0.1);
+            --shadow-medium: 0 8px 25px rgba(0, 0, 0, 0.15);
+            --border-radius: 12px;
+        }
 
+        body {
+            font-family: 'Poppins', sans-serif;
+            margin: 0;
+            padding: 0;
+            background: var(--grey-bg);
+            color: var(--text-dark);
+            line-height: 1.7;
+            scroll-behavior: smooth; /* Smooth scroll for anchor links */
+        }
 
-  .container {
-    max-width: 1100px;
-    margin: 50px auto;
-    padding: 40px 50px;
-    background: linear-gradient(to right, #cdddf7, #c5d7f7); /* Elegant gradient */
-    color: #ffffff;
-    border-radius: 20px;
-    box-shadow: 0 12px 35px rgba(0, 0, 0, 0.15);
-    animation: fadeIn 0.8s ease-out;
-    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-    transition: transform 0.3s ease, box-shadow 0.3s ease;
-}
+        /* Navigation Bar */
+        nav {
+            background: linear-gradient(90deg, #2c3e50, #34495e); /* Initial gradient */
+            padding: 15px 20px; /* Initial padding */
+            text-align: center;
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.2);
+            position: sticky;
+            top: 0; /* Initially visible at the top */
+            z-index: 1000;
+            transition: all 0.4s ease-in-out; /* Smooth transition for all changes including 'top' */
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 12px; /* Initial gap between links */
+        }
 
+        /* Class to hide the navigation bar */
+        nav.nav-hidden {
+            top: -100px; /* Move nav completely off-screen. Adjust if nav is taller. */
+            opacity: 0; /* Fade out */
+            visibility: hidden; /* Hide from screen readers/interaction */
+        }
 
-    h1, h2, h3 {
-      color: #000;
-    }
+        /* Styles for when the nav bar is scrolled (still applies when visible) */
+        nav.scrolled {
+            background: linear-gradient(90deg, #34495e, #2c3e50); /* Darker gradient */
+            padding: 8px 20px; /* Reduced padding on scroll */
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.3); /* Stronger shadow */
+        }
 
-    a {
-      color: #000000;
-    }
+        nav a {
+            color: var(--text-light);
+            text-decoration: none;
+            padding: 10px 22px; /* Initial padding for pill shape */
+            border-radius: 50px;
+            transition: background-color 0.3s ease, transform 0.2s ease, box-shadow 0.3s ease, font-size 0.3s ease, padding 0.3s ease; /* Add font-size/padding to transition */
+            font-weight: 600;
+            font-size: 0.9em; /* Initial font size */
+            display: inline-block;
+            background-color: rgba(255, 255, 255, 0.1); /* Subtle translucent background */
+        }
 
-    a:hover {
-      text-decoration: underline;
-    }
+        nav.scrolled a {
+            font-size: 0.85em; /* Slightly smaller text on scroll */
+            padding: 8px 18px; /* Reduced padding on scroll */
+        }
 
-    .button-container {
-      text-align: center;
-      margin-top: 20px;
-    }
+        nav a:hover {
+            background-color: var(--primary-blue);
+            transform: translateY(-2px) scale(1.02);
+            box-shadow: 0 4px 10px rgba(52, 152, 219, 0.4);
+        }
 
+        nav a.active {
+            background-color: var(--accent-green);
+            box-shadow: 0 4px 12px rgba(46, 204, 113, 0.5);
+            transform: translateY(-2px);
+            color: white;
+        }
 
-    /* Mobile Styles */
-    @media screen and (max-width: 768px) {
-      nav {
-        border-radius: 0;
-      }
+        .container {
+            max-width: 1000px;
+            margin: 40px auto;
+            padding: 30px 40px;
+            background: var(--white-bg);
+            border-radius: var(--border-radius);
+            box-shadow: var(--shadow-medium);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
 
-      nav a {
-        display: block;
-        font-size: 0.9em;
-        padding: 10px;
-        margin: 8px auto;
-        width: 90%;
-        max-width: 300px;
-      }
+        .container.hero {
+            background: linear-gradient(135deg, var(--gradient-start), var(--gradient-end));
+            text-align: center;
+            color: var(--dark-blue);
+            padding: 60px 40px;
+            margin-top: 0;
+            border-radius: 0 0 var(--border-radius) var(--border-radius);
+            box-shadow: var(--shadow-medium);
+        }
 
-      .container {
-        padding: 12px;
-      }
+        .container.hero h1 {
+            font-size: 2.8em;
+            margin-bottom: 20px;
+            line-height: 1.3;
+            color: var(--dark-blue);
+            text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.08);
+        }
 
-      h1, h2, h3 {
-        font-size: 1.1em;
-        line-height: 1.4;
-      }
+        .container.hero h2 {
+            font-size: 1.8em;
+            margin-top: 30px;
+            color: var(--dark-blue);
+            text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.08);
+        }
 
-      .horizontal-box-list {
-        flex-direction: column;
-      }
+        h2.title {
+            color: var(--primary-blue);
+            font-size: 2.2em;
+            margin-bottom: 25px;
+            padding-bottom: 15px;
+            border-bottom: 2px solid var(--light-blue);
+            text-align: center;
+            position: relative;
+        }
 
-     .career-button, .back-button {
-        width: 100%;
-        text-align: center;
-      }
-    }
-  </style>
+        h2.title::after {
+            content: '';
+            position: absolute;
+            bottom: -2px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 80px;
+            height: 4px;
+            background-color: var(--primary-blue);
+            border-radius: 2px;
+        }
+
+        h3 {
+            color: var(--dark-blue);
+            font-size: 1.5em;
+            margin-top: 35px;
+            margin-bottom: 12px;
+            border-left: 5px solid var(--primary-blue);
+            padding-left: 10px;
+        }
+
+        ul {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+
+        li {
+            margin-bottom: 20px;
+            padding-left: 0;
+        }
+
+        li p {
+            margin-top: 5px;
+            margin-bottom: 10px;
+        }
+
+        a {
+            color: var(--primary-blue);
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+
+        a:hover {
+            text-decoration: underline;
+            color: var(--dark-blue);
+        }
+
+        .degree-link {
+            display: inline-block;
+            background-color: var(--primary-blue);
+            color: var(--text-light);
+            padding: 10px 18px;
+            border-radius: 5px;
+            margin-right: 10px;
+            margin-bottom: 10px;
+            transition: background-color 0.3s ease, transform 0.2s ease, box-shadow 0.3s ease;
+            font-size: 0.95em;
+            font-weight: 500;
+            box-shadow: 0 2px 8px rgba(52, 152, 219, 0.3);
+        }
+
+        .degree-link:hover {
+            background-color: var(--dark-blue);
+            text-decoration: none;
+            transform: translateY(-3px) scale(1.02);
+            box-shadow: 0 5px 15px rgba(44, 62, 80, 0.4);
+        }
+
+        .button-container {
+            text-align: center;
+            margin-top: 40px;
+        }
+
+        .main-button {
+            display: inline-block;
+            padding: 14px 30px;
+            background-color: var(--accent-green);
+            color: var(--text-light);
+            text-decoration: none;
+            border-radius: 8px;
+            font-weight: 600;
+            transition: background-color 0.3s ease, transform 0.2s ease, box-shadow 0.3s ease;
+            box-shadow: 0 6px 15px rgba(46, 204, 113, 0.4);
+            font-size: 1.1em;
+        }
+
+        .main-button:hover {
+            background-color: #27ae60;
+            transform: translateY(-4px);
+            box-shadow: 0 10px 20px rgba(46, 204, 113, 0.5);
+        }
+
+        .back-button {
+            display: inline-block;
+            padding: 12px 25px;
+            background-color: var(--primary-blue);
+            color: var(--text-light);
+            text-decoration: none;
+            border-radius: 8px;
+            font-weight: 500;
+            transition: background-color 0.3s ease, transform 0.2s ease, box-shadow 0.3s ease;
+            box-shadow: 0 3px 10px rgba(52, 152, 219, 0.3);
+        }
+
+        .back-button:hover {
+            background-color: var(--dark-blue);
+            transform: translateY(-3px);
+            box-shadow: 0 6px 15px rgba(44, 62, 80, 0.4);
+        }
+
+        .career-pathways-list {
+            list-style: disc;
+            padding-left: 25px;
+            margin-top: 15px;
+            color: #555;
+            line-height: 1.6;
+        }
+        .career-pathways-list li {
+            margin-bottom: 8px;
+            font-size: 0.98em;
+        }
+        .career-pathways-list li strong {
+            color: var(--dark-blue);
+        }
+
+        /* --- Responsive Styles --- */
+
+        /* Extra Large Devices (desktops, 1200px and up) - Optional for larger adjustments */
+        @media (max-width: 1200px) {
+            .container {
+                max-width: 960px; /* Slightly reduce max-width */
+                margin: 35px auto;
+                padding: 28px 35px;
+            }
+            .container.hero h1 {
+                font-size: 2.6em;
+            }
+            .container.hero h2 {
+                font-size: 1.7em;
+            }
+            h2.title {
+                font-size: 2.1em;
+            }
+        }
+
+        /* Large Devices (desktops, 992px and up) */
+        @media (max-width: 992px) {
+            nav {
+                padding: 12px 15px;
+                gap: 10px;
+            }
+            nav.scrolled {
+                padding: 7px 15px;
+            }
+            nav a {
+                font-size: 0.85em;
+                padding: 9px 18px;
+            }
+            nav.scrolled a {
+                font-size: 0.8em;
+                padding: 7px 15px;
+            }
+            .container {
+                max-width: 720px; /* Further reduce max-width */
+                margin: 30px auto;
+                padding: 25px 30px;
+            }
+            .container.hero {
+                padding: 50px 30px;
+            }
+            .container.hero h1 {
+                font-size: 2.2em;
+            }
+            .container.hero h2 {
+                font-size: 1.5em;
+            }
+            h2.title {
+                font-size: 1.9em;
+                margin-bottom: 20px;
+                padding-bottom: 12px;
+            }
+            h3 {
+                font-size: 1.4em;
+                margin-top: 30px;
+            }
+        }
+
+        /* Medium Devices (tablets, 768px and up) */
+        @media (max-width: 768px) {
+            nav {
+                padding: 10px;
+                gap: 8px;
+            }
+            nav.scrolled {
+                padding: 6px 10px;
+            }
+            nav a {
+                font-size: 0.8em;
+                padding: 8px 15px;
+            }
+            nav.scrolled a {
+                font-size: 0.75em;
+                padding: 6px 12px;
+            }
+            .container {
+                margin: 25px 20px; /* Use horizontal margin instead of auto for full width feel */
+                padding: 20px 25px;
+                max-width: none; /* Allow container to stretch */
+            }
+            .container.hero {
+                padding: 40px 25px;
+            }
+            .container.hero h1 {
+                font-size: 1.9em;
+            }
+            .container.hero h2 {
+                font-size: 1.3em;
+            }
+            h2.title {
+                font-size: 1.7em;
+                margin-bottom: 18px;
+                padding-bottom: 10px;
+            }
+            h3 {
+                font-size: 1.2em;
+                margin-top: 25px;
+            }
+            .degree-link {
+                display: block; /* Stack buttons vertically */
+                width: calc(100% - 20px); /* Adjust width for padding */
+                margin-right: 0;
+                margin-bottom: 8px;
+                box-sizing: border-box; /* Include padding/border in width */
+            }
+            .main-button, .back-button {
+                padding: 12px 25px;
+                font-size: 1em;
+            }
+        }
+
+        /* Small Devices (landscape phones, 576px and up) */
+        @media (max-width: 576px) {
+            nav {
+                padding: 8px;
+                gap: 6px; /* Even smaller gap */
+            }
+            nav.scrolled {
+                padding: 5px 8px;
+            }
+            nav a {
+                font-size: 0.75em;
+                padding: 7px 12px;
+            }
+            nav.scrolled a {
+                font-size: 0.7em;
+                padding: 5px 10px;
+            }
+            .container {
+                margin: 20px 15px; /* Smaller margins for very small screens */
+                padding: 18px 20px;
+            }
+            .container.hero {
+                padding: 30px 20px;
+            }
+            .container.hero h1 {
+                font-size: 1.6em;
+            }
+            .container.hero h2 {
+                font-size: 1.1em;
+            }
+            h2.title {
+                font-size: 1.5em;
+            }
+            h3 {
+                font-size: 1.1em;
+                padding-left: 8px;
+            }
+            .main-button, .back-button {
+                padding: 10px 20px;
+                font-size: 0.9em;
+            }
+            .career-pathways-list {
+                padding-left: 20px;
+                font-size: 0.95em;
+            }
+        }
+
+        /* Extra Small Devices (portrait phones, 400px and up) */
+        @media (max-width: 400px) {
+            nav {
+                padding: 6px;
+                gap: 4px; /* Minimal gap */
+            }
+            nav.scrolled {
+                padding: 4px 6px;
+            }
+            nav a {
+                font-size: 0.7em;
+                padding: 6px 10px;
+            }
+            nav.scrolled a {
+                font-size: 0.65em;
+                padding: 4px 8px;
+            }
+            .container {
+                margin: 15px 10px;
+                padding: 15px 15px;
+            }
+            .container.hero h1 {
+                font-size: 1.4em;
+            }
+            .container.hero h2 {
+                font-size: 1em;
+            }
+            h2.title {
+                font-size: 1.3em;
+            }
+            h3 {
+                font-size: 1em;
+            }
+            .main-button, .back-button {
+                padding: 8px 15px;
+                font-size: 0.85em;
+            }
+            .career-pathways-list {
+                padding-left: 15px;
+                font-size: 0.9em;
+            }
+        }
+    </style>
 </head>
 <body>
 
-  <!-- Navigation Bar -->
-  <nav id="top">
-    <a href="#jayawardenapura">Sri Jayawardanapura</a>
-    <a href="#colombo">Colombo</a>
-    <a href="#kelaniya">Kelaniya</a>
-    <a href="#ruhuna">Ruhuna</a>
-    <a href="#wayamba">Wayamba</a>
-    <a href="#wellassa">Uva Wellassa</a>
-    <a href="#rajarata">Rajarata</a>
-    <a href="#jaffna">Jaffna</a>
-    <a href="#eastern">Eastern</a>
-    <a href="#south">South Eastern</a>
-    <a href="#sabara">Sabaragamuwa</a>
-    
-  </nav>
+    <nav id="top">
+        <a href="#jayawardenapura">Sri Jayawardanapura</a>
+        <a href="#colombo">Colombo</a>
+        <a href="#kelaniya">Kelaniya</a>
+        <a href="#ruhuna">Ruhuna</a>
+        <a href="#wayamba">Wayamba</a>
+        <a href="#wellassa">Uva Wellassa</a>
+        <a href="#rajarata">Rajarata</a>
+        <a href="#jaffna">Jaffna</a>
+        <a href="#eastern">Eastern</a>
+        <a href="#south">South Eastern</a>
+        <a href="#vavuniya">Vavuniya</a>
+        <a href="#sabara">Sabaragamuwa</a>
+    </nav>
 
-  <!-- Main Content Area -->
-  <div class="container">
-    <h1 class="text-glow">
-      Select a university above to<br>
-      learn more about their Technology <br>
-      Degree programs.
-    </h1>
-    <a href="one.html" style="
-            display: inline-block;
-            padding: 10px 20px;
-            background-color: #28a745;
-            color: rgb(253, 253, 253);
-            text-decoration: none;
-            border-radius: 5px;
-            font-family: Arial, sans-serif;">Home</a>
-  </div>
-
-  <div class="container">
-    <h2 class="text-glow2">
-      Also your BET, BICT, and BBST Degree Choice Your specialize Pathway<br>
-      Click below to check career pathways.
-    </h2>
-    <a href="info2.html" target="_blank">Technology Degree Career</a>
-  </div>
-  <!-- Jayawardenapura University Section -->
-  <div class="container" id="jayawardenapura">
-    <h2 class="title">Sri Jayawardanapura University</h2>
-    <ul>
-      <li>
-        <strong><h3>Bachelor of Information and Communication Technology</h3></strong>
-        <p>You can specialize in these pathway,</p>
-        <p>Click on them You Directly Go to degree descriptions</p>
-        
-          <a href="https://tech.sjp.ac.lk/ict/network-technology/" target="_blank">Network Technology</a>
-          <a href="https://tech.sjp.ac.lk/ict/software-technology/" target="_blank">Software Technology</a>
-          <a href="http://tech.sjp.ac.lk/ict/multimedia-technology/" target="_blank">Multimedia Technology</a>
-        
-      </li>
-      <li>
-        <strong><h3>Bachelor of Engineering Technology</h3></strong>
-        <p>You can specialize in these pathways,</p>
-        
-          <a href="https://tech.sjp.ac.lk/mmt/automobile-technology/" target="_blank">Automobile Technology</a>
-          <a href="https://tech.sjp.ac.lk/mmt/mechatronics-technology/" target="_blank">Mechatronic Technology</a>
-          <a href="https://tech.sjp.ac.lk/mmt/polymer-processing-technology/" target="_blank">Polymer Processing Technology</a>
-          <a href="https://tech.sjp.ac.lk/cet/eet/" target="_blank">Energy and Environmental Technology</a>
-          <a href="https://tech.sjp.ac.lk/cet/cbst/" target="_blank">Construction and Building services Technology</a>
-          <a href="https://tech.sjp.ac.lk/cet/gtec/" target="_blank">GeoTechnology</a>
-        
-      </li>
-      <li>
-        <strong>Bachelor of Biosystem Technology</strong>
-        <p>You Can specialize These Pathways</p>
-        
-          <a href="https://tech.sjp.ac.lk/bst/agriculture-and-environmental-technology/" target="_blank">Agriculture and Environmental Technology</a>
-          <a href="https://tech.sjp.ac.lk/bst/food-processing-technology/" target="_blank">Food Processing Technology</a>
-          <a href="https://tech.sjp.ac.lk/bst/industrial-biosystems-technology/" target="_blank">Industrial Biosystems Technology</a>
-        
-      </li>
-    </ul>
-    <div class="button-container">
-  <a href="#top" class="back-button">Back to Navigation</a>
-</div>
-</div>
-
-  <!-- Colombo University Section -->
-  <div class="container" id="colombo">
-    <h2 class="title">Colombo University</h2>
-    <ul>
-      <li>
-        <strong><h3>Bachelor of Information and Communication Technology</h3></strong>
-        <p>This Degree Creer pathways;</p>
-        <p><ul>
-    <li>
-      <strong>Software Developer</strong>
-      Software developers design, develop, and maintain software applications for various platforms, such as web, mobile, and desktop. They may work on a wide range of projects, including mobile apps, web applications, enterprise software, and more.
-    </li>
-    <li>
-      <strong>IT Consultant</strong>
-      IT consultants provide expert advice to businesses and organizations on technology-related matters. They may offer guidance on system implementation, security, software selection, and overall IT strategy.
-    </li>
-    <li>
-      <strong>Cloud Solutions Architect</strong>
-      With the increasing adoption of cloud computing, cloud solutions architects design and implement cloud-based solutions for businesses. They leverage cloud technologies to enhance scalability, reliability, and cost-effectiveness.
-    </li>
-    <li>
-      <strong>UX/UI Designer</strong>
-      User Experience (UX) and User Interface (UI) designers create intuitive and visually appealing interfaces for software applications and websites. They focus on optimizing user interactions and overall user satisfaction.
-    </li>
-    <li>
-      <strong>Data Analyst</strong>
-      Data analysts collect, process, and analyze data to provide insights that inform business decisions. They use various tools and techniques to interpret data and identify trends, patterns, and opportunities.
-    </li>
-    <li>
-      <strong>IT Project Manager</strong>
-      IT project managers oversee the planning, execution, and successful delivery of technology projects. They coordinate team members, manage budgets and resources, and ensure projects are completed on time and within scope.
-    </li>
-    <li>
-      <strong>Mobile App Developer</strong>
-      Mobile app developers specialize in creating applications for smartphones and other mobile devices. They may work on iOS, Android, or cross-platform apps to meet the needs of a diverse user base.
-    </li>
-    <li>
-      <strong>IT Support Specialist</strong>
-      IT support specialists provide technical assistance and troubleshooting to end-users. They handle hardware and software issues, answer questions, and help users with various technology-related problems.
-    </li>
-  </ul></p>
-        <p>You can specialize in these pathways,</p>
-        <a href="https://tech.cmb.ac.lk/academic/ug/bict_honours/" target="_blank">Information and Communication Technology</a>
-    <li><strong><h3>Bachelor of Engineering Technology</h3></strong></li>
-        <p>This Degree Career Pathways</p>
-        <ul>
-          <li>
-      <strong>Automation Engineer</strong>
-      Automation engineers design, develop, and implement automated systems and processes, ensuring the seamless integration of instrumentation and control systems.
-    </li>
-    <li>
-      <strong>Instrumentation Engineer</strong>
-      Instrumentation engineers specialize in designing and maintaining instruments and sensors used to measure and control various parameters in industrial processes.
-    </li>
-    <li>
-      <strong>Control Systems Engineer</strong>
-      Control systems engineers work on developing and optimizing control systems that regulate and monitor processes in industries like manufacturing, energy, and transportation.
-    </li>
-    <li>
-      <strong>Process Automation Specialist</strong>
-      Process automation specialists focus on automating and optimizing manufacturing and industrial processes to improve efficiency and productivity.
-    </li>
-    <li>
-      <strong>Manufacturing Automation Technician</strong>
-      These technicians are involved in the setup, maintenance, and troubleshooting of automated manufacturing systems and equipment.
-    </li>
-    <li>
-      <strong>Instrumentation and Control Specialist</strong>
-      Graduates can work as specialists, focusing on specific aspects of instrumentation and control systems within an organization.
-    </li>
-    <li>
-      <strong>Maintenance Engineer (Automation)</strong>
-      Maintenance engineers with expertise in automation are responsible for ensuring the proper functioning and performance of automated systems.
-    </li>
-    <li>
-      <strong>Energy Management Engineer</strong>
-      Energy management engineers use instrumentation and automation to optimize energy usage in buildings and industrial facilities.
-    </li>
-    <li>
-      <strong>Calibration Engineer</strong>
-      Calibration engineers calibrate and adjust instruments and sensors to ensure accurate and reliable measurements.
-    </li>
-    <li>
-      <strong>Teacher</strong>
-      Can teach technology subjects in government or private schools.
-    </li></ul>
-            <p>Degree Informations,</p>
-            <a href="https://tech.cmb.ac.lk/academic/ug/bet-honours-in-instrumentation-and-automation/" target="_blank">Instrumentation and Automation Technology</a>
-    <li><strong><h3>Bachelor of Information and Communication Technology</h3></strong></li>
-    <p>Click on them You Directly Go to degree descriptions</p>
-        
-          <a href="https://tech.cmb.ac.lk/academic/ug/bbst-honours-in-environmental-technology/" target="_blank">Environmental Technology</a>
-          <a href="https://tech.cmb.ac.lk/academic/ug/bbst-honours-in-agriculture/" target="_blank">Agriculture Technology</a>
-        <ul>
-  <li><strong>Environmental Consultant</strong> – Environmental consultants work with individuals and organizations to assess environmental impacts, conduct environmental audits, and develop strategies to minimize negative effects on the environment. They may also assist in obtaining permits and complying with environmental regulations.</li>
-  <li><strong>Environmental Scientist</strong> – Environmental scientists conduct research and investigations to understand environmental issues and propose solutions. They might study pollution levels, analyze environmental samples, and assess the impact of various activities on ecosystems.</li>
-  <li><strong>Sustainability Analyst</strong> – Sustainability analysts work with organizations to evaluate their practices and operations for environmental sustainability. They develop and implement strategies to reduce resource consumption, waste, and carbon emissions.</li>
-  <li><strong>Waste Management Specialist</strong> – Waste management specialists focus on the proper handling, treatment, and disposal of waste materials. They may work for municipalities, companies, or environmental agencies to develop waste management plans and promote recycling initiatives.</li>
-  <li><strong>Renewable Energy Consultant</strong> – With a background in environmental technology, graduates can advise on the adoption of renewable energy sources such as solar, wind, and biomass. They may assist in evaluating energy efficiency and implementing sustainable energy solutions.</li>
-  <li><strong>Environmental Policy Analyst</strong> – Policy analysts research and assess environmental policies and regulations at the local, regional, and national levels. They contribute to the development of new policies that promote environmental protection and sustainability.</li>
-  <li><strong>Natural Resource Manager</strong> – Natural resource managers are responsible for overseeing the sustainable use and conservation of natural resources like forests, water, and wildlife. They work to maintain ecological balance while meeting the needs of communities and industries.</li>
-  <li><strong>Environmental Health and Safety Specialist</strong> – These specialists focus on ensuring compliance with environmental and safety regulations in various industries. They develop and implement protocols to protect workers and the environment from potential hazards.</li>
-  <li><strong>Ecologist</strong> – Ecologists study ecosystems and their interactions with living organisms. They might work in research or field-based roles, studying biodiversity, habitat conservation, and environmental restoration.</li>
-  <li><strong>Water Quality Specialist</strong> – Water quality specialists assess and monitor the quality of water sources, identify pollutants, and develop strategies to improve water quality for human and environmental health.</li>
-  <li><strong>Agricultural Research Scientist</strong> – Agricultural research scientists conduct experiments and studies to improve crop yield, quality, and disease resistance. They may work for government agencies, research institutions, or private companies in developing innovative agricultural technologies.</li>
-  <li><strong>Agronomist</strong> – Agronomists focus on crop management and production. They advise farmers on best practices related to soil health, crop selection, irrigation, fertilization, and pest control to maximize yields sustainably.</li>
-  <li><strong>Precision Agriculture Specialist</strong> – Precision agriculture specialists use advanced technologies such as drones, GPS, and remote sensing to optimize farming practices. They help farmers make data-driven decisions for efficient resource utilization and improved productivity.</li>
-  <li><strong>Agricultural Consultant</strong> – Agricultural consultants provide expert advice and support to farmers and agricultural businesses. They may specialize in areas such as livestock management, crop production, or agricultural business planning.</li>
-  <li><strong>Farm Manager</strong> – Farm managers are responsible for overseeing the daily operations of farms. They coordinate planting, harvesting, and other agricultural activities while managing resources and labor to ensure optimal productivity.</li>
-  <li><strong>Sustainable Agriculture Coordinator</strong> – Sustainable agriculture coordinators focus on promoting environmentally friendly and socially responsible farming practices. They may work for NGOs, government agencies, or private companies to implement sustainability initiatives.</li>
-        </ul>
-       <div class="button-container">
-  <a href="#top" class="back-button">Back to Navigation</a>
-</div>
-</div>
-  <!-- Kelaniya University Section -->
-  <div class="container" id="kelaniya">
-    <h2 class="title">Kelaniya University</h2>
-      <ul><li>
-        <strong><h3>Bachelor of Information and Communication Technology</h3></strong>
-        <p>You can specialize in these pathway,</p>
-       <ul>
-    <li>Computer Network Technology</li>
-    <li>Software Systems Technology</li>
-    <li>Games and Animation Technology</li>
-  </ul><li>
-  <strong><h3>Bachelor of Engineering Technology</h3></strong>
-        <p>You can specialize in these pathway,</p>
-       <ul>
-    <li>Material and Process Technology</li>
-    <li>Industrial Automation and Robotics</li>
-    <li>Sustainable Technology</li>
-  </ul></li>
-  <li><strong><h3>Bachelor of Bio System Technology</h3></strong>
-       <ul>
-    <li>Bio System Technology</li>
-  </li></ul>
-  <p>Degree Informations,</p>
-            <a href="https://fct.kln.ac.lk/index.php/academic/undergraduate-programs/bachelor-of-information-and-communication-technology-degree" target="_blank">Bachelor of information and communication technology Technology - BICT</a>
-            <P><a href="https://fct.kln.ac.lk/index.php/academic/undergraduate-programs/bachelor-of-engineering-technology-degree" target="_blank"> Bachelor of engineering technology - BET</a></P>
-            <P><a href="https://fct.kln.ac.lk/index.php/academic/undergraduate-programs/bachelor-of-biosystems-technology-honours-degree" target="_blank"> Bachelor of bio system technology - BBST</a></P>
-<div class="button-container">
-  <a href="#top" class="back-button">Back to Navigation</a>
-</div>
-</div>
-<!-- Ruhuna University Section -->
-  <div class="container" id="ruhuna">
-    <h2 class="title">Ruhuna University</h2>
-     <ul><li>
-        <strong><h3>Bachelor of Information and Communication Technology</h3></strong>
-        <p>Degree Informations,</p>
-          <a href="https://www.tec.ruh.ac.lk/degree-ict.php#gsc.tab=0" target="_blank">Information and Communication Technology</a>
-        <li>
-        <strong><h3>Bachelor of Engineering Technology</h3></strong>
-        <p>Degree Informations,</p>
-          <a href="https://www.tec.ruh.ac.lk/degree-et.php#gsc.tab=0" target="_blank">Information and Communication Technology</a>
-        <li>
-        <strong><h3>Bachelor of Bio System Technology</h3></strong>
-        <p>Degree Informations,</p>
-          <a href="https://www.tec.ruh.ac.lk/degree-bst.php#gsc.tab=0" target="_blank">Information and Communication Technology</a>
-        </ul>
-      <div class="button-container">
-  <a href="#top" class="back-button">Back to Navigation</a>
-</div>
-</div>
-<!-- Wayamba University Section -->
- <div class="container" id="wayamba">
-   <h2 class="title">Wayamba University</h2>
- <ul>
-      <li>
-        <strong><h3>Bachelor of Engineering Technology</h3></strong>
-        <p>You can specialize in these pathway,</p>
-        <p>Click on them You Directly Go to degree descriptions</p>
-        
-          <a href="https://fot.wyb.ac.lk/bet-honours-in-construction-technology/" target="_blank"> Construction Technology</a>
-          <a href="https://fot.wyb.ac.lk/bet-honours-in-mechanical-and-manufacturing-technology/" target="_blank">Mechanical and Manufacturing Technology</a>
-          <a href="https://fot.wyb.ac.lk/bet-honours-in-electrotechnology/" target="_blank">Electrotechnology</a>
-          <a href="https://fot.wyb.ac.lk/bet-honours-in-material-and-nano-science-technology/" target="_blank">Material and Nano Science Technology</a>
-      </li>
-      <li>
-        <strong><h3>Bachelor of Biosystem Technology</h3></strong>
-        <p>Degree Details,</p>
-          <a href="https://fapm.wyb.ac.lk/?page_id=1032" target="_blank">Biosystems Technology</a>
-        </ul>
-      </li>
-    </ul>
-    <div class="button-container">
-  <a href="#top" class="back-button">Back to Navigation</a>
-</div>
-</div>
-<!-- Uva wellassa University Section -->
-  <div class="container" id="wellassa">
-    <h2 class="title">Uva Wellassa University</h2>
-    <ul>
-      <li>
-        <strong><h3>Bachelor of Information and Communication Technology</h3></strong>
-        <p>Degree descriptions,</p>
-        
-          <a href="https://www.uwu.ac.lk/academic/faculties/fts/bachelor-of-information-and-communication-technology/" target="_blank">Information and Communication Technology</a>
-      </li>
-      <li>
-        <strong><h3>Bachelor of Engineering Technology</h3></strong>
-        <p>You can specialize in these pathways,</p>
-          <a href="https://www.uwu.ac.lk/department-of-engineering-technology/" target="_blank">Mechanical Engineering Technology</a>
-      </li>
-      <li>
-        <strong><h3>Bachelor of Biosystem Technology</h3></strong>
-        <p>You Can specialize These Pathways,<ul class="horizontal-box-list"><li>Industrial Biosystems Technology</li><li>Food Technology</li></ul></p>
-        <p>Degree Details,</p></li>
-        <a href="https://www.uwu.ac.lk/department-of-biosystems-technology-2/" target="_blank">Bio System Technology</a>
-    </ul>
-    <div class="button-container">
-  <a href="#top" class="back-button">Back to Navigation</a>
-</div>
-  </div>
-  <!-- Rajarata University Section -->
-  <div class="container" id="rajarata">
-    <h2 class="title">Rajarata University</h2>
-    <ul>
-      <li>
-        <strong><h3>Bachelor of Information and Communication Technology</h3></strong>
-        <p>Degree descriptions,</p>
-        
-          <a href="https://fot.rjt.ac.lk/ict-home/" target="_blank">Information and Communication Technology</a>
-      </li>
-      <li>
-        <strong><h3>Bachelor of Engineering Technology</h3></strong>
-        <p>You can specialize in these pathways,</p>
-        <ul>
-          <a href="https://fot.rjt.ac.lk/ent-home/" target="_blank">Electrical & Electronic Technology</a>
-          <a href="https://fot.rjt.ac.lk/mtt-home/" target="_blank">Materials Technology</a>
-        </ul>
-      </li>
-      <li>
-        <strong><h3>Bachelor of Biosystem Technology</h3></strong>
-        <p>You Can specialize These Pathways,</p>
-        <p>Degree Details,</p>
-        <a href="https://fot.rjt.ac.lk/fdt-home/" target="_blank">Food Technology</a>
-        <a href="https://fot.rjt.ac.lk/bpt-home/" target="_blank">Bio Process Technology</a>
-      </li>
-    </ul>
-    <div class="button-container">
-  <a href="#top" class="back-button">Back to Navigation</a>
-</div>
-  </div>
-   <!-- Jaffna University Section -->
-  <div class="container" id="jaffna">
-    <h2 class="title">Jaffna University</h2>
-    <ul><li>
-    <strong><h3>Bachelor of Engineering Technology</h3></strong>
-       <p>You can specialize in these pathway,</p>
-       <ul class="horizontal-box-list">
-    <li>Automobile Technology</li>
-    <li>Construction Technology</li>
-    <li>Electro Technology
-</li></ul>
-<p>Degree Details,</p>
-        <a href="https://www.tech.jfn.ac.lk/engineering-technology/" target="_blank">Engineering Technology</a>
-  </ul></li>
-  <ul><li><strong><h3>Bachelor of Bio System technology</h3></strong>
-  <p>Degree Informations,</p>
-           <p>You Can specialize These Pathways,</p>
-        <a href="https://www.tech.jfn.ac.lk/specialization-in-commercial-green-farming/" target="_blank">Commercial Green Farming Technology</a>
-        <a href="https://www.tech.jfn.ac.lk/specialization-in-food-production/" target="_blank">Food Production Technology</a>
-<div class="button-container">
-  <a href="#top" class="back-button">Back to Navigation</a>
-</div>          
-</div>
-<!-- Eastern Uni Section -->
-  <div class="container" id="eastern">
-    <h2 class="title">Eastern University</h2>
-    <ul>
-      <li>
-        <strong><h3>Bachelor of Information and Communication Technology</h3></strong>
-        <p>Degree Details,</p>
-        
-          <a href="https://www.esn.ac.lk/cict" target="_blank">Information and Communication Technology</a>
-      </li>
-      <li>
-        <strong><h3>Bachelor of Biosystem Technology</h3></strong>
-        <p>Degree Details,</p>
-        <a href="https://fot.esn.ac.lk/dbst" target="_blank">Bio System Technology</a>
-      </li>
-    </ul>
-    <div class="button-container">
-  <a href="#top" class="back-button">Back to Navigation</a>
-</div>
-  </div>
-  <!-- South Eastern University Section -->
-  <div class="container" id="south">
-    <h2 class="title">South Eastern University</h2>
-    <ul>
-      <li>
-        <strong><h3>Bachelor of Information and Communication Technology</h3></strong>
-      <p>You Can specialize These Pathways,<ul class="horizontal-box-list"><li>Network and Security Technology</li>
-        <li>Software Technologies</li></ul></p><p>Degree Details,</p>
-      <a href="https://www.seu.ac.lk/ft/department_of_information_and_communication_technology.php" target="_blank">Information and Communication Technology</a>
-      </li>
-      <li>
-        <strong><h3>Bachelor of Biosystem Technology</h3></strong>
-        <p>Degree Details,</p>
-        <a href="https://www.seu.ac.lk/ft/department_of_biosystem_technology.php" target="_blank">Bio System Technology</a>
-      </li>
-    </ul>
-    <div class="button-container">
-  <a href="#top" class="back-button">Back to Navigation</a>
-</div>
-  </div>
-  <!-- Vavuniya Uni Section -->
-  <div class="container" id="vavuniya">
-    <h2 class="title">Vavuniya University</h2>
-    <ul>
-      <li>
-        <strong><h3>Bachelor of Information and Communication Technology</h3></strong>
-        <p>Degree Details,</p>
-         <a href="https://fts.vau.ac.lk/dept/" target="_blank">Information and Communication Technology</a>
-      </li>
-      <div class="button-container">
-  <a href="#top" class="back-button">Back to Navigation</a>
-</div>
+    <div class="container hero">
+        <h1>
+            Discover Technology Degree Programs <br> in Sri Lankan Universities
+        </h1>
+        <a href="one.html" class="main-button">Go to Home Page</a>
     </div>
- <!-- Sabaragamuwa University Section -->
-  <div class="container" id="sabara">
-    <h2 class="title">Sabaragamuwa University</h2>
-    <ul>
-      <li>
-        <strong><h3>Bachelor of Engineering Technology</h3></strong>
-        <p>Degree description,</p>
-          <a href="https://www.sab.ac.lk/tech/department-of-engineering-technology-home" target="_blank">Engineering Technology</a>
-      </li>
-      <li>
-        <strong><h3>Bachelor of Biosystem Technology</h3></strong>
-        <p>Degree Details,</p>
-        <a href="https://www.sab.ac.lk/tech/department-of-biosystems-technology-home" target="_blank">Bio System Technology</a>
-      </li>
-    </ul>
-    <div class="button-container">
-  <a href="#top" class="back-button">Back to Navigation</a>
-</div>
-  </div>
+
+    <div class="container">
+        <h2>
+            Explore Specialized Pathways & Career Opportunities
+        </h2>
+        <p>Your **Bachelor of Engineering Technology (BET)**, **Bachelor of Information and Communication Technology (BICT)**, and **Bachelor of Biosystem Technology (BBST)** degrees offer specialized pathways, opening doors to diverse and exciting careers in Sri Lanka's rapidly evolving technological landscape.</p>
+        <div class="button-container">
+            <a href="info2.html" target="_blank" class="main-button">Check Career Pathways</a>
+        </div>
+    </div>
+
+    <div class="container" id="jayawardenapura">
+        <h2 class="title">Sri Jayawardanapura University</h2>
+        <ul>
+            <li>
+                <h3>Bachelor of Information and Communication Technology</h3>
+                <p>You can specialize in these pathways. Click on them to directly go to degree descriptions:</p>
+                <a href="https://tech.sjp.ac.lk/ict/network-technology/" target="_blank" class="degree-link">Network Technology</a>
+                <a href="https://tech.sjp.ac.lk/ict/software-technology/" target="_blank" class="degree-link">Software Technology</a>
+                <a href="http://tech.sjp.ac.lk/ict/multimedia-technology/" target="_blank" class="degree-link">Multimedia Technology</a>
+            </li>
+            <li>
+                <h3>Bachelor of Engineering Technology</h3>
+                <p>You can specialize in these pathways:</p>
+                <a href="https://tech.sjp.ac.lk/mmt/automobile-technology/" target="_blank" class="degree-link">Automobile Technology</a>
+                <a href="https://tech.sjp.ac.lk/mmt/mechatronics-technology/" target="_blank" class="degree-link">Mechatronic Technology</a>
+                <a href="https://tech.sjp.ac.lk/mmt/polymer-processing-technology/" target="_blank" class="degree-link">Polymer Processing Technology</a>
+                <a href="https://tech.sjp.ac.lk/cet/eet/" target="_blank" class="degree-link">Energy and Environmental Technology</a>
+                <a href="https://tech.sjp.ac.lk/cet/cbst/" target="_blank" class="degree-link">Construction and Building services Technology</a>
+                <a href="https://tech.sjp.ac.lk/cet/gtec/" target="_blank" class="degree-link">GeoTechnology</a>
+            </li>
+            <li>
+                <h3>Bachelor of Biosystem Technology</h3>
+                <p>You can specialize in these pathways:</p>
+                <a href="https://tech.sjp.ac.lk/bst/agriculture-and-environmental-technology/" target="_blank" class="degree-link">Agriculture and Environmental Technology</a>
+                <a href="https://tech.sjp.ac.lk/bst/food-processing-technology/" target="_blank" class="degree-link">Food Processing Technology</a>
+                <a href="https://tech.sjp.ac.lk/bst/industrial-biosystems-technology/" target="_blank" class="degree-link">Industrial Biosystems Technology</a>
+            </li>
+        </ul>
+        <div class="button-container">
+            <a href="#top" class="back-button">Back to Navigation</a>
+        </div>
+    </div>
+
+    <div class="container" id="colombo">
+        <h2 class="title">Colombo University</h2>
+        <ul>
+            <li>
+                <h3>Bachelor of Information and Communication Technology</h3>
+                <p>This degree offers the following career pathways:</p>
+                <ul class="career-pathways-list">
+                    <li><strong>Software Developer:</strong> Design, develop, and maintain software applications for various platforms.</li>
+                    <li><strong>IT Consultant:</strong> Provide expert advice to businesses on technology-related matters.</li>
+                    <li><strong>Cloud Solutions Architect:</strong> Design and implement cloud-based solutions for businesses.</li>
+                    <li><strong>UX/UI Designer:</strong> Create intuitive and visually appealing interfaces for software applications and websites.</li>
+                    <li><strong>Data Analyst:</strong> Collect, process, and analyze data to provide insights for business decisions.</li>
+                    <li><strong>IT Project Manager:</strong> Oversee the planning, execution, and successful delivery of technology projects.</li>
+                    <li><strong>Mobile App Developer:</strong> Specialize in creating applications for smartphones and other mobile devices.</li>
+                    <li><strong>IT Support Specialist:</strong> Provide technical assistance and troubleshooting to end-users.</li>
+                </ul>
+                <p>Degree Information:</p>
+                <a href="https://tech.cmb.ac.lk/academic/ug/bict_honours/" target="_blank" class="degree-link">Information and Communication Technology</a>
+            </li>
+            <li>
+                <h3>Bachelor of Engineering Technology</h3>
+                <p>This degree offers the following career pathways:</p>
+                <ul class="career-pathways-list">
+                    <li><strong>Automation Engineer:</strong> Design, develop, and implement automated systems.</li>
+                    <li><strong>Instrumentation Engineer:</strong> Specialize in designing and maintaining instruments and sensors.</li>
+                    <li><strong>Control Systems Engineer:</strong> Work on developing and optimizing control systems in various industries.</li>
+                    <li><strong>Process Automation Specialist:</strong> Focus on automating and optimizing manufacturing and industrial processes.</li>
+                    <li><strong>Manufacturing Automation Technician:</strong> Involved in the setup, maintenance, and troubleshooting of automated manufacturing systems.</li>
+                    <li><strong>Instrumentation and Control Specialist:</strong> Focus on specific aspects of instrumentation and control systems.</li>
+                    <li><strong>Maintenance Engineer (Automation):</strong> Responsible for ensuring the proper functioning of automated systems.</li>
+                    <li><strong>Energy Management Engineer:</strong> Optimize energy usage in buildings and industrial facilities.</li>
+                    <li><strong>Calibration Engineer:</strong> Calibrate and adjust instruments and sensors for accurate measurements.</li>
+                    <li><strong>Teacher:</strong> Can teach technology subjects in government or private schools.</li>
+                </ul>
+                <p>Degree Information:</p>
+                <a href="https://tech.cmb.ac.lk/academic/ug/bet-honours-in-instrumentation-and-automation/" target="_blank" class="degree-link">Instrumentation and Automation Technology</a>
+            </li>
+            <li>
+                <h3>Bachelor of Biosystem Technology</h3>
+                <p>Degree Information and Career Pathways:</p>
+                <a href="https://tech.cmb.ac.lk/academic/ug/bbst-honours-in-environmental-technology/" target="_blank" class="degree-link">Environmental Technology</a>
+                <a href="https://tech.cmb.ac.lk/academic/ug/bbst-honours-in-agriculture/" target="_blank" class="degree-link">Agriculture Technology</a>
+                <ul class="career-pathways-list">
+                    <li><strong>Environmental Consultant:</strong> Assess environmental impacts and develop strategies to minimize negative effects.</li>
+                    <li><strong>Environmental Scientist:</strong> Conduct research and investigations to understand environmental issues and propose solutions.</li>
+                    <li><strong>Sustainability Analyst:</strong> Evaluate organizational practices for environmental sustainability.</li>
+                    <li><strong>Waste Management Specialist:</strong> Focus on the proper handling, treatment, and disposal of waste materials.</li>
+                    <li><strong>Renewable Energy Consultant:</strong> Advise on the adoption of renewable energy sources.</li>
+                    <li><strong>Environmental Policy Analyst:</strong> Research and assess environmental policies and regulations.</li>
+                    <li><strong>Natural Resource Manager:</strong> Oversee sustainable use and conservation of natural resources.</li>
+                    <li><strong>Environmental Health and Safety Specialist:</strong> Ensure compliance with environmental and safety regulations.</li>
+                    <li><strong>Ecologist:</strong> Study ecosystems and their interactions with living organisms.</li>
+                    <li><strong>Water Quality Specialist:</strong> Assess and monitor water quality.</li>
+                    <li><strong>Agricultural Research Scientist:</strong> Conduct experiments to improve crop yield and quality.</li>
+                    <li><strong>Agronomist:</strong> Focus on crop management and production, advising farmers on best practices.</li>
+                    <li><strong>Precision Agriculture Specialist:</strong> Use advanced technologies to optimize farming practices.</li>
+                    <li><strong>Agricultural Consultant:</strong> Provide expert advice to farmers and agricultural businesses.</li>
+                    <li><strong>Farm Manager:</strong> Oversee daily farm operations.</li>
+                    <li><strong>Sustainable Agriculture Coordinator:</strong> Promote environmentally friendly farming practices.</li>
+                </ul>
+            </li>
+        </ul>
+        <div class="button-container">
+            <a href="#top" class="back-button">Back to Navigation</a>
+        </div>
+    </div>
+
+    <div class="container" id="kelaniya">
+        <h2 class="title">Kelaniya University</h2>
+        <ul>
+            <li>
+                <h3>Bachelor of Information and Communication Technology</h3>
+                <p>You can specialize in these pathways:</p>
+                <ul class="career-pathways-list">
+                    <li>Computer Network Technology</li>
+                    <li>Software Systems Technology</li>
+                    <li>Games and Animation Technology</li>
+                </ul>
+                <p>Degree Information:</p>
+                <a href="https://fct.kln.ac.lk/index.php/academic/undergraduate-programs/bachelor-of-information-and-communication-technology-degree" target="_blank" class="degree-link">Bachelor of Information and Communication Technology (BICT)</a>
+            </li>
+            <li>
+                <h3>Bachelor of Engineering Technology</h3>
+                <p>You can specialize in these pathways:</p>
+                <ul class="career-pathways-list">
+                    <li>Material and Process Technology</li>
+                    <li>Industrial Automation and Robotics</li>
+                    <li>Sustainable Technology</li>
+                </ul>
+                <p>Degree Information:</p>
+                <a href="https://fct.kln.ac.lk/index.php/academic/undergraduate-programs/bachelor-of-engineering-technology-degree" target="_blank" class="degree-link">Bachelor of Engineering Technology (BET)</a>
+            </li>
+            <li>
+                <h3>Bachelor of Bio System Technology</h3>
+                <p>Degree Information:</p>
+                <a href="https://fct.kln.ac.lk/index.php/academic/undergraduate-programs/bachelor-of-biosystems-technology-honours-degree" target="_blank" class="degree-link">Bachelor of Biosystems Technology (BBST)</a>
+            </li>
+        </ul>
+        <div class="button-container">
+            <a href="#top" class="back-button">Back to Navigation</a>
+        </div>
+    </div>
+
+    <div class="container" id="ruhuna">
+        <h2 class="title">Ruhuna University</h2>
+        <ul>
+            <li>
+                <h3>Bachelor of Information and Communication Technology</h3>
+                <p>Degree Information:</p>
+                <a href="https://www.tec.ruh.ac.lk/degree-ict.php#gsc.tab=0" target="_blank" class="degree-link">Information and Communication Technology</a>
+            </li>
+            <li>
+                <h3>Bachelor of Engineering Technology</h3>
+                <p>Degree Information:</p>
+                <a href="https://www.tec.ruh.ac.lk/degree-et.php#gsc.tab=0" target="_blank" class="degree-link">Engineering Technology</a>
+            </li>
+            <li>
+                <h3>Bachelor of Biosystem Technology</h3>
+                <p>Degree Information:</p>
+                <a href="https://www.tec.ruh.ac.lk/degree-bst.php#gsc.tab=0" target="_blank" class="degree-link">Biosystem Technology</a>
+            </li>
+        </ul>
+        <div class="button-container">
+            <a href="#top" class="back-button">Back to Navigation</a>
+        </div>
+    </div>
+
+    <div class="container" id="wayamba">
+        <h2 class="title">Wayamba University</h2>
+        <ul>
+            <li>
+                <h3>Bachelor of Engineering Technology</h3>
+                <p>You can specialize in these pathways. Click on them to directly go to degree descriptions:</p>
+                <a href="https://fot.wyb.ac.lk/bet-honours-in-construction-technology/" target="_blank" class="degree-link">Construction Technology</a>
+                <a href="https://fot.wyb.ac.lk/bet-honours-in-mechanical-and-manufacturing-technology/" target="_blank" class="degree-link">Mechanical and Manufacturing Technology</a>
+                <a href="https://fot.wyb.ac.lk/bet-honours-in-electrotechnology/" target="_blank" class="degree-link">Electrotechnology</a>
+                <a href="https://fot.wyb.ac.lk/bet-honours-in-material-and-nano-science-technology/" target="_blank" class="degree-link">Material and Nano Science Technology</a>
+            </li>
+            <li>
+                <h3>Bachelor of Biosystem Technology</h3>
+                <p>Degree Details:</p>
+                <a href="https://fapm.wyb.ac.lk/?page_id=1032" target="_blank" class="degree-link">Biosystems Technology</a>
+            </li>
+        </ul>
+        <div class="button-container">
+            <a href="#top" class="back-button">Back to Navigation</a>
+        </div>
+    </div>
+
+    <div class="container" id="wellassa">
+        <h2 class="title">Uva Wellassa University</h2>
+        <ul>
+            <li>
+                <h3>Bachelor of Information and Communication Technology</h3>
+                <p>Degree descriptions:</p>
+                <a href="https://www.uwu.ac.lk/academic/faculties/fts/bachelor-of-information-and-communication-technology/" target="_blank" class="degree-link">Information and Communication Technology</a>
+            </li>
+            <li>
+                <h3>Bachelor of Engineering Technology</h3>
+                <p>You can specialize in these pathways:</p>
+                <a href="https://www.uwu.ac.lk/department-of-engineering-technology/" target="_blank" class="degree-link">Mechanical Engineering Technology</a>
+            </li>
+            <li>
+                <h3>Bachelor of Biosystem Technology</h3>
+                <p>You can specialize in these pathways:</p>
+                <ul class="career-pathways-list">
+                    <li>Industrial Biosystems Technology</li>
+                    <li>Food Technology</li>
+                </ul>
+                <p>Degree Details:</p>
+                <a href="https://www.uwu.ac.lk/department-of-biosystems-technology-2/" target="_blank" class="degree-link">Biosystem Technology</a>
+            </li>
+        </ul>
+        <div class="button-container">
+            <a href="#top" class="back-button">Back to Navigation</a>
+        </div>
+    </div>
+
+    <div class="container" id="rajarata">
+        <h2 class="title">Rajarata University</h2>
+        <ul>
+            <li>
+                <h3>Bachelor of Information and Communication Technology</h3>
+                <p>Degree descriptions:</p>
+                <a href="https://fot.rjt.ac.lk/ict-home/" target="_blank" class="degree-link">Information and Communication Technology</a>
+            </li>
+            <li>
+                <h3>Bachelor of Engineering Technology</h3>
+                <p>You can specialize in these pathways:</p>
+                <a href="https://fot.rjt.ac.lk/ent-home/" target="_blank" class="degree-link">Electrical & Electronic Technology</a>
+                <a href="https://fot.rjt.ac.lk/mtt-home/" target="_blank" class="degree-link">Materials Technology</a>
+            </li>
+            <li>
+                <h3>Bachelor of Biosystem Technology</h3>
+                <p>You can specialize in these pathways:</p>
+                <a href="https://fot.rjt.ac.lk/fdt-home/" target="_blank" class="degree-link">Food Technology</a>
+                <a href="https://fot.rjt.ac.lk/bpt-home/" target="_blank" class="degree-link">Bio Process Technology</a>
+            </li>
+        </ul>
+        <div class="button-container">
+            <a href="#top" class="back-button">Back to Navigation</a>
+        </div>
+    </div>
+
+    <div class="container" id="jaffna">
+        <h2 class="title">Jaffna University</h2>
+        <ul>
+            <li>
+                <h3>Bachelor of Engineering Technology</h3>
+                <p>You can specialize in these pathways:</p>
+                <ul class="career-pathways-list">
+                    <li>Automobile Technology</li>
+                    <li>Construction Technology</li>
+                    <li>Electro Technology</li>
+                </ul>
+                <p>Degree Details:</p>
+                <a href="https://www.tech.jfn.ac.lk/engineering-technology/" target="_blank" class="degree-link">Engineering Technology</a>
+            </li>
+            <li>
+                <h3>Bachelor of Biosystem Technology</h3>
+                <p>You can specialize in these pathways:</p>
+                <a href="https://www.tech.jfn.ac.lk/specialization-in-commercial-green-farming/" target="_blank" class="degree-link">Commercial Green Farming Technology</a>
+                <a href="https://www.tech.jfn.ac.lk/specialization-in-food-production/" target="_blank" class="degree-link">Food Production Technology</a>
+            </li>
+        </ul>
+        <div class="button-container">
+            <a href="#top" class="back-button">Back to Navigation</a>
+        </div>
+    </div>
+
+    <div class="container" id="eastern">
+        <h2 class="title">Eastern University</h2>
+        <ul>
+            <li>
+                <h3>Bachelor of Information and Communication Technology</h3>
+                <p>Degree Details:</p>
+                <a href="https://www.esn.ac.lk/cict" target="_blank" class="degree-link">Information and Communication Technology</a>
+            </li>
+            <li>
+                <h3>Bachelor of Biosystem Technology</h3>
+                <p>Degree Details:</p>
+                <a href="https://fot.esn.ac.lk/dbst" target="_blank" class="degree-link">Biosystem Technology</a>
+            </li>
+        </ul>
+        <div class="button-container">
+            <a href="#top" class="back-button">Back to Navigation</a>
+        </div>
+    </div>
+
+    <div class="container" id="south">
+        <h2 class="title">South Eastern University</h2>
+        <ul>
+            <li>
+                <h3>Bachelor of Information and Communication Technology</h3>
+                <p>You can specialize in these pathways:</p>
+                <ul class="career-pathways-list">
+                    <li>Network and Security Technology</li>
+                    <li>Software Technologies</li>
+                </ul>
+                <p>Degree Details:</p>
+                <a href="https://www.seu.ac.lk/ft/department_of_information_and_communication_technology.php" target="_blank" class="degree-link">Information and Communication Technology</a>
+            </li>
+            <li>
+                <h3>Bachelor of Biosystem Technology</h3>
+                <p>Degree Details:</p>
+                <a href="https://www.seu.ac.lk/ft/department_of_biosystem_technology.php" target="_blank" class="degree-link">Biosystem Technology</a>
+            </li>
+        </ul>
+        <div class="button-container">
+            <a href="#top" class="back-button">Back to Navigation</a>
+        </div>
+    </div>
+
+    <div class="container" id="vavuniya">
+        <h2 class="title">Vavuniya University</h2>
+        <ul>
+            <li>
+                <h3>Bachelor of Information and Communication Technology</h3>
+                <p>Degree Details:</p>
+                <a href="https://fts.vau.ac.lk/dept/" target="_blank" class="degree-link">Information and Communication Technology</a>
+            </li>
+        </ul>
+        <div class="button-container">
+            <a href="#top" class="back-button">Back to Navigation</a>
+        </div>
+    </div>
+
+    <div class="container" id="sabara">
+        <h2 class="title">Sabaragamuwa University</h2>
+        <ul>
+            <li>
+                <h3>Bachelor of Engineering Technology</h3>
+                <p>Degree description:</p>
+                <a href="https://www.sab.ac.lk/tech/department-of-engineering-technology-home" target="_blank" class="degree-link">Engineering Technology</a>
+            </li>
+            <li>
+                <h3>Bachelor of Biosystem Technology</h3>
+                <p>Degree Details:</p>
+                <a href="https://www.sab.ac.lk/tech/department-of-biosystems-technology-home" target="_blank" class="degree-link">Biosystem Technology</a>
+            </li>
+        </ul>
+        <div class="button-container">
+            <a href="#top" class="back-button">Back to Navigation</a>
+        </div>
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const navLinks = document.querySelectorAll('nav a');
+            const sections = document.querySelectorAll('.container[id]');
+            const nav = document.querySelector('nav');
+            const scrollThreshold = 100; // Pixels to scroll before the 'scrolled' class applies
+            const hideThreshold = 50; // Pixels to scroll down before nav hides (after initial scrollThreshold)
+
+            let lastScrollTop = 0; // Tracks previous scroll position
+
+            // Function to add/remove 'active' class based on scroll position
+            const setActiveLink = () => {
+                let currentActive = '';
+                // Dynamically get nav height, important for accurate scroll offset when nav shrinks
+                const navHeight = nav.offsetHeight;
+                // If the nav is hidden, we assume it's roughly its expanded height for calculating offset
+                const effectiveNavHeight = nav.classList.contains('nav-hidden') ? 80 : navHeight; // Use a reasonable default if hidden
+                const scrollOffset = effectiveNavHeight + 60; // Adjust for sticky nav and a bit more offset
+
+                sections.forEach(section => {
+                    const sectionTop = section.offsetTop - scrollOffset;
+                    const sectionHeight = section.clientHeight;
+                    // Check if current scroll position is within the section
+                    if (window.pageYOffset >= sectionTop && window.pageYOffset < sectionTop + sectionHeight) {
+                        currentActive = section.getAttribute('id');
+                    }
+                });
+
+                navLinks.forEach(link => {
+                    link.classList.remove('active');
+                    if (link.getAttribute('href').includes(currentActive) && currentActive !== '') {
+                        link.classList.add('active');
+                    }
+                });
+            };
+
+            // Function to handle nav bar style on scroll (shrink/expand)
+            const handleNavBarShrink = () => {
+                if (window.pageYOffset > scrollThreshold) {
+                    nav.classList.add('scrolled');
+                } else {
+                    nav.classList.remove('scrolled');
+                }
+            };
+
+            // Function to hide/show nav based on scroll direction
+            const handleNavBarHideShow = () => {
+                const currentScroll = window.pageYOffset;
+
+                // Only hide if scrolled past a certain point AND scrolling down
+                if (currentScroll > scrollThreshold + hideThreshold && currentScroll > lastScrollTop) {
+                    // Scrolling Down
+                    nav.classList.add('nav-hidden');
+                } else if (currentScroll < lastScrollTop || currentScroll <= scrollThreshold) {
+                    // Scrolling Up OR scrolled back to the top area
+                    nav.classList.remove('nav-hidden');
+                }
+                lastScrollTop = currentScroll; // Update last scroll position
+            };
+
+            // Smooth scroll for navigation links
+            navLinks.forEach(link => {
+                link.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    const targetId = this.getAttribute('href');
+                    const targetElement = document.querySelector(targetId);
+                    if (targetElement) {
+                        // Temporarily remove nav-hidden to get correct offset, then apply scroll
+                        // Or, calculate offset based on an assumed 'visible' nav height
+                        const navWasHidden = nav.classList.contains('nav-hidden');
+                        if (navWasHidden) nav.classList.remove('nav-hidden'); // Show nav before scrolling
+                        
+                        // Give browser a moment to apply class change if it was hidden
+                        requestAnimationFrame(() => {
+                            const offsetTop = targetElement.offsetTop - nav.offsetHeight - 20; // Adjust for sticky nav and a small buffer
+                            window.scrollTo({
+                                top: offsetTop,
+                                behavior: 'smooth'
+                            });
+                            // Optionally, re-hide nav after scroll if it was hidden before the click
+                            // setTimeout(() => { if (navWasHidden) nav.classList.add('nav-hidden'); }, 800); // Re-hide after a short delay
+                        });
+                    }
+                });
+            });
+
+            // Set initial active link and nav bar style, and update on scroll
+            window.addEventListener('scroll', () => {
+                handleNavBarShrink(); // Handles shrinking/expanding
+                handleNavBarHideShow(); // Handles hiding/showing
+                setActiveLink(); // Handles active link highlighting
+            });
+            
+            // Initial calls to set state on page load
+            handleNavBarShrink();
+            setActiveLink();
+            // Don't call handleNavBarHideShow initially unless you want it hidden by default
+            // It will hide itself once the user scrolls down enough.
+        });
+    </script>
 
 </body>
 </html>
