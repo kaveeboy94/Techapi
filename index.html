@@ -1,172 +1,247 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Technology අපි</title>
-  <link rel="stylesheet" href="style.css" />
-  <style>
-    /* Base body and container styling */
-    body {
-      margin: 0;
-      font-family: Arial, sans-serif;
-      background-image: url('17973908.jpg'); /* Your image path */
-      background-size: cover;
-      background-repeat: no-repeat;
-      background-position: center;
-      min-height: 100vh;
-      color: white;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      justify-content: center;
-      padding: 40px 20px;
-      text-align: center;
-      box-sizing: border-box;
-    }
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Technology අපි - Empowering Future Innovators</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
 
-    .container {
-      background-color: rgba(0, 0, 0, 0.65);
-      padding: 40px 30px;
-      border-radius: 15px;
-      max-width: 700px;
-      width: 100%;
-      margin: 20px auto;
-      box-shadow: 0 6px 18px rgba(0, 0, 0, 0.5);
-      box-sizing: border-box;
-      transition: box-shadow 0.3s ease;
-    }
+    <style>
+        :root {
+            --primary-blue: #3498db;
+            --dark-blue: #1c2833;
+            --light-text: #ecf0f1;
+            --accent-green: #2ecc71;
+            --hover-green: #27ae60;
+            --overlay-start: rgba(0, 0, 0, 0.7);
+            --overlay-end: rgba(0, 0, 0, 0.9);
+            --border-radius: 12px;
+            --box-shadow: 0 10px 30px rgba(0, 0, 0, 0.4);
+            --hover-shadow: 0 15px 40px rgba(0, 0, 0, 0.6); /* New: Stronger shadow on hover */
+        }
 
-    .container:hover {
-      box-shadow: 0 10px 28px rgba(0, 0, 0, 0.7);
-    }
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
 
-    h1 {
-      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-      font-size: 3rem;
-      color: rgb(138, 167, 235);
-      text-shadow: 2px 2px 5px rgba(0, 0, 139, 0.5);
-      margin: 20px 0 30px;
-    }
+        body {
+            font-family: 'Poppins', sans-serif;
+            background: url('17973908.jpg') no-repeat center center fixed;
+            background-size: cover;
+            min-height: 100vh;
+            color: var(--light-text);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            padding: 30px 15px;
+            text-align: center;
+            position: relative;
+            z-index: 0;
+            overflow-x: hidden; /* Prevent horizontal scroll on some effects */
+        }
 
-    p {
-      font-size: 1.2em;
-      line-height: 1.7;
-      margin: 0 0 15px;
-    }
+        body::before {
+            content: "";
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(to bottom, var(--overlay-start), var(--overlay-end));
+            z-index: -1;
+            /* New: Subtle background overlay animation */
+            animation: gradientPulse 10s ease infinite alternate;
+        }
 
-    h3 {
-      margin-top: 0;
-      margin-bottom: 25px;
-      font-weight: 600;
-      font-size: 1.3em;
-      color: #d1d9ff;
-    }
+        @keyframes gradientPulse {
+            0% { background: linear-gradient(to bottom, var(--overlay-start), var(--overlay-end)); }
+            100% { background: linear-gradient(to top, var(--overlay-start), var(--overlay-end)); }
+        }
 
-    a.button {
-      display: inline-block;
-      background-color: #007bff;
-      color: white;
-      padding: 14px 32px;
-      border-radius: 8px;
-      text-decoration: none;
-      font-weight: bold;
-      font-size: 1.1rem;
-      text-align: center;
-      cursor: pointer;
-      box-shadow: 0 6px 12px rgba(0, 123, 255, 0.5);
-      transition: background-color 0.3s ease, box-shadow 0.3s ease, transform 0.2s ease;
-      min-width: 220px;
-      max-width: 100%;
-      user-select: none;
-      white-space: nowrap;
-    }
+        .container {
+            background-color: rgba(255, 255, 255, 0.05);
+            padding: 40px 35px;
+            border-radius: var(--border-radius);
+            max-width: 750px;
+            width: 100%;
+            margin: 25px auto;
+            box-shadow: var(--box-shadow);
+            backdrop-filter: blur(6px);
+            border: 1px solid rgba(255, 255, 255, 0.15);
+            animation: fadeIn 0.8s ease forwards;
+            /* New: Hover effect for containers */
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
 
-    a.button:hover,
-    a.button:focus {
-      background-color: #0056b3;
-      box-shadow: 0 8px 20px rgba(0, 86, 179, 0.7);
-      transform: translateY(-3px);
-      outline: none;
-    }
+        /* New: Staggered animation for containers */
+        .container:nth-child(1) {
+            animation-delay: 0.2s;
+        }
+        .container:nth-child(2) {
+            animation-delay: 0.4s;
+        }
 
-    a.button:active {
-      background-color: #004080;
-      box-shadow: none;
-      transform: translateY(0);
-    }
+        .container:hover {
+            transform: translateY(-8px);
+            box-shadow: var(--hover-shadow);
+        }
 
-    /* Responsive adjustments */
-    @media (max-width: 768px) {
-      .container {
-        max-width: 90%;
-        padding: 30px 20px;
-      }
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(25px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
 
-      h1 {
-        font-size: 2.4rem;
-      }
+        h1 {
+            font-size: 2.8rem;
+            margin-bottom: 20px;
+            font-weight: 700;
+            color: var(--primary-blue);
+            text-shadow: 2px 2px 10px rgba(0, 0, 0, 0.5);
+        }
 
-      p {
-        font-size: 1.1em;
-      }
+        h3 {
+            font-size: 1.5rem;
+            font-weight: 600;
+            color: var(--light-text);
+            margin-bottom: 25px;
+        }
 
-      h3 {
-        font-size: 1.1em;
-      }
+        p {
+            font-size: 1.1rem;
+            line-height: 1.8;
+            color: var(--light-text);
+            margin-bottom: 20px;
+        }
 
-      a.button {
-        padding: 12px 24px;
-        font-size: 1rem;
-        min-width: 180px;
-      }
-    }
+        /* New: Animation for strong text */
+        p strong {
+            position: relative;
+            display: inline-block; /* Required for transform on inline elements */
+            transition: color 0.3s ease;
+        }
+        p strong::after {
+            content: '';
+            position: absolute;
+            left: 0;
+            bottom: -2px;
+            width: 0%;
+            height: 2px;
+            background-color: var(--accent-green);
+            transition: width 0.3s ease;
+        }
+        .container:hover p strong::after {
+            width: 100%;
+        }
 
-    @media (max-width: 480px) {
-      body {
-        padding: 30px 15px;
-      }
 
-      .container {
-        padding: 25px 15px;
-      }
+        a.button {
+            display: inline-block;
+            padding: 14px 36px;
+            background-color: var(--accent-green);
+            color: #fff;
+            font-weight: 600;
+            font-size: 1rem;
+            text-transform: uppercase;
+            letter-spacing: 0.6px;
+            border-radius: var(--border-radius);
+            text-decoration: none;
+            transition: 0.3s ease-in-out, transform 0.4s cubic-bezier(0.68, -0.55, 0.27, 1.55); /* New: bouncy transform */
+            box-shadow: 0 8px 20px rgba(46, 204, 113, 0.3);
+            position: relative;
+            overflow: hidden; /* For ripple effect or similar */
+            z-index: 1;
+        }
 
-      h1 {
-        font-size: 2rem;
-      }
+        a.button:hover {
+            background-color: var(--hover-green);
+            transform: translateY(-8px) scale(1.05); /* More pronounced pop */
+            box-shadow: 0 15px 30px rgba(46, 204, 113, 0.6); /* Stronger shadow */
+        }
 
-      p {
-        font-size: 1em;
-      }
+        /* Responsive Styles */
+        @media (max-width: 768px) {
+            h1 {
+                font-size: 2.2rem;
+            }
+            h3 {
+                font-size: 1.3rem;
+            }
+            .container {
+                padding: 30px 25px;
+            }
+        }
 
-      h3 {
-        font-size: 1em;
-      }
+        @media (max-width: 480px) {
+            h1 {
+                font-size: 1.8rem;
+            }
+            h3 {
+                font-size: 1.1rem;
+            }
+            p {
+                font-size: 1rem;
+            }
+            a.button {
+                display: block;
+                width: 100%;
+                padding: 15px;
+                font-size: 1.05rem;
+                margin-top: 15px;
+            }
+            /* Reset hover transform for buttons on small screens if they stack */
+            a.button:hover {
+                transform: translateY(0) scale(1);
+                box-shadow: 0 8px 20px rgba(46, 204, 113, 0.3);
+            }
+        }
 
-      a.button {
-        width: 100%;
-        padding: 14px 0;
-        font-size: 1.1rem;
-        min-width: auto;
-        max-width: 100%;
-        white-space: normal;
-      }
-    }
-  </style>
+        @media (max-height: 600px) and (max-width: 480px) { /* For very short, narrow screens */
+            body {
+                padding-top: 15px;
+                padding-bottom: 15px;
+                justify-content: flex-start; /* Align to top to prevent squishing */
+            }
+            .container {
+                margin: 10px auto; /* Reduce vertical margin between containers */
+                padding: 25px 20px; /* Slightly less padding */
+            }
+            h1 {
+                margin-bottom: 15px;
+            }
+            h3 {
+                margin-bottom: 20px;
+            }
+            p {
+                margin-bottom: 15px;
+            }
+        }
+
+    </style>
 </head>
 <body>
 
-  <div class="container">
-    <h1>Technology අපි</h1>
-    <p>This website is for students studying the Advanced Level Technology stream.<br>
-      It will help you choose your career path and understand the courses offered 
-      by the Faculty of Technology in Sri Lankan universities.</p>
-  </div>
+    <div class="container">
+        <h1>Technology අපි</h1>
+        <p>
+            Welcome to <strong>Technology අපි</strong> — your trusted guide for Sri Lankan A/L Technology stream students. Explore future-ready career paths and in-depth university degree programs designed to shape tomorrow’s tech innovators.
+        </p>
+    </div>
 
-  <div class="container">
-    <h3>Click the button below to explore Technology Degree information.</h3>
-    <a href="info.html" class="button">More Information</a>
-  </div>
+    <div class="container">
+        <h3>Discover Your Future in Technology</h3>
+        <a href="info.html" class="button">Explore Degree Information</a>
+    </div>
 
 </body>
 </html>
