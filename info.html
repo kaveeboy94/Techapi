@@ -762,7 +762,7 @@ select option[value=""] {
   }
 }
  </style>
-  <style>
+<style>
     body {
       margin: 0;
       font-family: Arial, sans-serif;
@@ -837,10 +837,11 @@ select option[value=""] {
   </style>
 </head>
 <body>
-<!-- Hamburger Menu Button -->
+
+<!-- Hamburger Button (mobile only) -->
 <button class="menu-toggle" onclick="openMenu()">☰</button>
 
-<!-- Side Menu -->
+<!-- Side Navigation (mobile only) -->
 <div id="sideMenu" class="side-menu">
   <span class="close-btn" onclick="closeMenu()">×</span>
   <a href="index.html">Home</a>
@@ -848,9 +849,9 @@ select option[value=""] {
   <a href="#colombo">University of Colombo</a>
   <a href="#kelaniya">University of Kelaniya</a>
   <a href="#ruhuna">University of Ruhuna</a>
-  <a href="#wayamba">Wayamba University of Sri Lanka</a>
+  <a href="#wayamba">Wayamba University</a>
   <a href="#wellassa">Uva Wellassa University</a>
-  <a href="#rajarata">Rajarata University of Sri Lanka</a>
+  <a href="#rajarata">Rajarata University</a>
   <a href="#jaffna">University of Jaffna</a>
   <a href="#eastern">Eastern University</a>
   <a href="#south-eastern">South Eastern University</a>
@@ -858,7 +859,7 @@ select option[value=""] {
   <a href="#sabara">Sabaragamuwa University</a>
 </div>
 
-<!-- Old Dropdown for PC -->
+<!-- Original dropdown (desktop only) -->
 <nav class="navbar">
   <select onchange="location = this.value;">
     <option value="">Select a University</option>
@@ -870,10 +871,10 @@ select option[value=""] {
     <option value="#wellassa">Uva Wellassa University</option>
     <option value="#rajarata">Rajarata University of Sri Lanka</option>
     <option value="#jaffna">University of Jaffna</option>
-    <option value="#eastern">Eastern University, Sri Lanka</option>
-    <option value="#south-eastern">South Eastern University of Sri Lanka</option>
+    <option value="#eastern">Eastern University</option>
+    <option value="#south-eastern">South Eastern University</option>
     <option value="#vavuniya">University of Vavuniya</option>
-    <option value="#sabara">Sabaragamuwa University of Sri Lanka</option>
+    <option value="#sabara">Sabaragamuwa University</option>
     <option value="index.html">Home</option>
   </select>
 </nav>
