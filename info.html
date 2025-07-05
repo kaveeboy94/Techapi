@@ -22,6 +22,9 @@
             --shadow-light: 0 4px 15px rgba(0, 0, 0, 0.1);
             --shadow-medium: 0 8px 25px rgba(0, 0, 0, 0.15);
             --border-radius: 12px;
+            /* New variables for hero animations */
+            --hero-glow-color: rgba(52, 152, 219, 0.6);
+            --hero-border-color: rgba(52, 152, 219, 0.8);
         }
 
         body {
@@ -36,7 +39,7 @@
 
         /* Navigation Bar */
         nav {
-            background: linear-gradient(90deg, #4380bc, #76a8d9); /* Initial gradient */
+            background: linear-gradient(90deg, #2c3e50, #34495e); /* Initial gradient */
             padding: 15px 20px; /* Initial padding */
             text-align: center;
             box-shadow: 0 5px 20px rgba(0, 0, 0, 0.2);
@@ -59,7 +62,7 @@
 
         /* Styles for when the nav bar is scrolled (still applies when visible) */
         nav.scrolled {
-            background: linear-gradient(90deg, #72a0cd, #71a1d1); /* Darker gradient */
+            background: linear-gradient(90deg, #34495e, #2c3e50); /* Darker gradient */
             padding: 8px 20px; /* Reduced padding on scroll */
             box-shadow: 0 8px 25px rgba(0, 0, 0, 0.3); /* Stronger shadow */
         }
@@ -94,6 +97,31 @@
             color: white;
         }
 
+        /* Styling for the new "Home Page" button in the nav bar */
+        .nav-home-button {
+            background-color: var(--accent-green);
+            color: var(--text-light);
+            padding: 10px 22px; /* Match other nav links' padding */
+            border-radius: 50px; /* Match other nav links' border-radius */
+            font-weight: 600;
+            font-size: 0.9em; /* Match other nav links' font size */
+            transition: background-color 0.3s ease, transform 0.2s ease, box-shadow 0.3s ease;
+            box-shadow: 0 4px 10px rgba(46, 204, 113, 0.3); /* Subtle shadow */
+        }
+
+        .nav-home-button:hover {
+            background-color: var(--hover-green); /* Darker green on hover */
+            transform: translateY(-2px) scale(1.02);
+            box-shadow: 0 6px 15px rgba(46, 204, 113, 0.4); /* Stronger shadow on hover */
+        }
+
+        /* Adjustments for the home button when nav is scrolled */
+        nav.scrolled .nav-home-button {
+            font-size: 0.85em; /* Shrink with other links */
+            padding: 8px 18px; /* Shrink with other links */
+        }
+
+
         .container {
             max-width: 1000px;
             margin: 40px auto;
@@ -105,6 +133,7 @@
         }
 
         .container.hero {
+            /* Existing background, now with animation */
             background: linear-gradient(135deg, var(--gradient-start), var(--gradient-end));
             text-align: center;
             color: var(--dark-blue);
@@ -112,14 +141,56 @@
             margin-top: 0;
             border-radius: 0 0 var(--border-radius) var(--border-radius);
             box-shadow: var(--shadow-medium);
+            position: relative; /* Needed for pseudo-element border */
+            overflow: hidden; /* Ensures animated border stays within bounds */
+
+            /* New: Animated background gradient */
+            background-size: 200% 200%; /* Larger background to animate */
+            animation: heroGradientPulse 10s ease infinite alternate;
         }
+
+        @keyframes heroGradientPulse {
+            0% { background-position: 0% 0%; }
+            100% { background-position: 100% 100%; }
+        }
+
+        /* New: Animated border for hero container */
+        .container.hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            border-radius: 0 0 var(--border-radius) var(--border-radius); /* Match hero's rounded corners */
+            padding: 3px; /* Controls border thickness */
+            background: linear-gradient(45deg, var(--primary-blue), var(--accent-green), var(--primary-blue));
+            background-size: 200% 200%; /* For animating the border gradient */
+            -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+            mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+            -webkit-mask-composite: xor;
+            mask-composite: exclude;
+            animation: borderPulse 4s ease infinite alternate;
+            z-index: -1; /* Place behind content */
+            opacity: 0.7; /* Make it subtle */
+        }
+
+        @keyframes borderPulse {
+            0% { background-position: 0% 0%; }
+            100% { background-position: 100% 100%; }
+        }
+
 
         .container.hero h1 {
             font-size: 2.8em;
             margin-bottom: 20px;
             line-height: 1.3;
             color: var(--dark-blue);
-            text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.08);
+            /* Enhanced text shadow for glow effect */
+            text-shadow: 0 0 5px rgba(0,0,0,0.2), 0 0 15px var(--hero-glow-color), 0 0 25px var(--hero-glow-color);
+            opacity: 0; /* Initial state for animation */
+            animation: slideInFromTop 0.8s ease forwards;
+            animation-delay: 0.2s; /* Staggered animation */
         }
 
         .container.hero h2 {
@@ -127,7 +198,28 @@
             margin-top: 30px;
             color: var(--dark-blue);
             text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.08);
+            opacity: 0; /* Initial state for animation */
+            animation: slideInFromTop 0.8s ease forwards;
+            animation-delay: 0.4s; /* Staggered animation */
         }
+
+        .container.hero .main-button {
+            opacity: 0; /* Initial state for animation */
+            animation: slideInFromTop 0.8s ease forwards;
+            animation-delay: 0.6s; /* Staggered animation */
+        }
+
+        @keyframes slideInFromTop {
+            from {
+                opacity: 0;
+                transform: translateY(-20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
 
         h2.title {
             color: var(--primary-blue);
@@ -213,6 +305,7 @@
             margin-top: 40px;
         }
 
+        /* Original main-button styling (kept in case it's used elsewhere, though not for nav-home-button) */
         .main-button {
             display: inline-block;
             padding: 14px 30px;
@@ -270,7 +363,7 @@
         /* Extra Large Devices (desktops, 1200px and up) - Optional for larger adjustments */
         @media (max-width: 1200px) {
             .container {
-                max-width: 960px; /* Slightly reduce max-width */
+                max-width: 960px;
                 margin: 35px auto;
                 padding: 28px 35px;
             }
@@ -302,8 +395,17 @@
                 font-size: 0.8em;
                 padding: 7px 15px;
             }
+            /* Adjustments for nav-home-button on scroll */
+            .nav-home-button {
+                font-size: 0.85em;
+                padding: 9px 18px;
+            }
+            nav.scrolled .nav-home-button {
+                font-size: 0.8em;
+                padding: 7px 15px;
+            }
             .container {
-                max-width: 720px; /* Further reduce max-width */
+                max-width: 720px;
                 margin: 30px auto;
                 padding: 25px 30px;
             }
@@ -344,10 +446,19 @@
                 font-size: 0.75em;
                 padding: 6px 12px;
             }
+            /* Adjustments for nav-home-button on scroll */
+            .nav-home-button {
+                font-size: 0.8em;
+                padding: 8px 15px;
+            }
+            nav.scrolled .nav-home-button {
+                font-size: 0.75em;
+                padding: 6px 12px;
+            }
             .container {
-                margin: 25px 20px; /* Use horizontal margin instead of auto for full width feel */
+                margin: 25px 20px;
                 padding: 20px 25px;
-                max-width: none; /* Allow container to stretch */
+                max-width: none;
             }
             .container.hero {
                 padding: 40px 25px;
@@ -368,11 +479,11 @@
                 margin-top: 25px;
             }
             .degree-link {
-                display: block; /* Stack buttons vertically */
-                width: calc(100% - 20px); /* Adjust width for padding */
+                display: block;
+                width: calc(100% - 20px);
                 margin-right: 0;
                 margin-bottom: 8px;
-                box-sizing: border-box; /* Include padding/border in width */
+                box-sizing: border-box;
             }
             .main-button, .back-button {
                 padding: 12px 25px;
@@ -384,7 +495,7 @@
         @media (max-width: 576px) {
             nav {
                 padding: 8px;
-                gap: 6px; /* Even smaller gap */
+                gap: 6px;
             }
             nav.scrolled {
                 padding: 5px 8px;
@@ -397,8 +508,17 @@
                 font-size: 0.7em;
                 padding: 5px 10px;
             }
+            /* Adjustments for nav-home-button on scroll */
+            .nav-home-button {
+                font-size: 0.75em;
+                padding: 7px 12px;
+            }
+            nav.scrolled .nav-home-button {
+                font-size: 0.7em;
+                padding: 5px 10px;
+            }
             .container {
-                margin: 20px 15px; /* Smaller margins for very small screens */
+                margin: 20px 15px;
                 padding: 18px 20px;
             }
             .container.hero {
@@ -431,7 +551,7 @@
         @media (max-width: 400px) {
             nav {
                 padding: 6px;
-                gap: 4px; /* Minimal gap */
+                gap: 4px;
             }
             nav.scrolled {
                 padding: 4px 6px;
@@ -441,6 +561,15 @@
                 padding: 6px 10px;
             }
             nav.scrolled a {
+                font-size: 0.65em;
+                padding: 4px 8px;
+            }
+            /* Adjustments for nav-home-button on scroll */
+            .nav-home-button {
+                font-size: 0.7em;
+                padding: 6px 10px;
+            }
+            nav.scrolled .nav-home-button {
                 font-size: 0.65em;
                 padding: 4px 8px;
             }
@@ -469,11 +598,86 @@
                 font-size: 0.9em;
             }
         }
+.container.hero1 {
+            /* Tailwind classes handle most of the container styling */
+            position: relative; /* Needed for absolute positioning of pseudo-elements */
+            overflow: hidden; /* Hide anything outside the div */
+            /* Light blue gradient background */
+            background: linear-gradient(135deg, #b1e6ff 0%, #bfecfb 100%);
+            border-radius: 1.5rem; /* More rounded corners */
+            box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04); /* Subtle shadow */
+        }
+
+        /* Styles for the animated elements (original animation logic) */
+        .container.hero1::before,
+        .container.hero1::after {
+            content: "";
+            position: absolute;
+            border-radius: 50%; /* Make them circular */
+            /* Subtle white transparency for animated elements on light blue background */
+            background: rgba(255, 255, 255, 0.2);
+            animation: moveCircles 15s linear infinite;
+            pointer-events: none; /* Ensure they don't interfere with clicks */
+            z-index: 0; /* Place them behind the text */
+        }
+
+        .container.hero1::before {
+            width: 150px;
+            height: 150px;
+            top: -50px;
+            left: -50px;
+            animation-delay: 0s;
+        }
+
+        .container.hero1::after {
+            width: 100px;
+            height: 100px;
+            bottom: -30px;
+            right: -30px;
+            animation-delay: 7.5s; /* Stagger the animation */
+        }
+
+        @keyframes moveCircles {
+            0% {
+                transform: translate(0, 0) scale(1);
+                opacity: 1;
+            }
+            50% {
+                transform: translate(100px, 50px) scale(1.2);
+                opacity: 0.7;
+            }
+            100% {
+                transform: translate(0, 0) scale(1);
+                opacity: 1;
+            }
+        }
+
+        /* Ensure the text is above the animated elements and styled beautifully */
+        .container.hero1 h1 {
+            position: relative;
+            z-index: 1;
+             font-family: 'Quicksand', 'Poppins', 'Nunito', Arial, sans-serif;
+            font-size: 2.8rem; /* Slightly increased font size for Lora */
+            font-weight: 600; /* Bold for impact with Lora */
+            line-height: 1.2; /* Adjusted line height */
+            text-shadow: 3px 3px 10px rgba(0, 0, 0, 0.5); /* Strong text shadow for definition */
+            color: #001f3f; /* Dark blue color */
+            letter-spacing: 0.02em; /* Adjusted letter spacing */
+        }
+
+        /* Responsive adjustments for smaller screens */
+        @media (max-width: 768px) {
+            .container.hero1 h1 {
+                font-size: 2.4rem; /* Adjust font size for smaller screens */
+                line-height: 1.15;
+            }
+        }
     </style>
 </head>
 <body>
 
     <nav id="top">
+        <a href="index.html" class="nav-home-button">Home Page</a> <!-- Moved and restyled button -->
         <a href="#jayawardenapura">Sri Jayawardanapura</a>
         <a href="#colombo">Colombo</a>
         <a href="#kelaniya">Kelaniya</a>
@@ -488,11 +692,10 @@
         <a href="#sabara">Sabaragamuwa</a>
     </nav>
 
-    <div class="container hero">
+    <div class="container hero1">
         <h1>
             Discover Technology Degree Programs <br> in Sri Lankan Universities
         </h1>
-        <a href="index.html" class="main-button">Go to Home Page</a>
     </div>
 
     <div class="container">
@@ -501,9 +704,10 @@
         </h2>
         <p>Your **Bachelor of Engineering Technology (BET)**, **Bachelor of Information and Communication Technology (BICT)**, and **Bachelor of Biosystem Technology (BBST)** degrees offer specialized pathways, opening doors to diverse and exciting careers in Sri Lanka's rapidly evolving technological landscape.</p>
         <div class="button-container">
+            <!-- This button is now redundant if the one in hero is used, but kept for structure -->
             <a href="info2.html" target="_blank" class="main-button">Check Career Pathways</a>
         </div>
-    </div>
+      </div>
 
     <div class="container" id="jayawardenapura">
         <h2 class="title">Sri Jayawardanapura University</h2>
@@ -874,7 +1078,9 @@
 
                 navLinks.forEach(link => {
                     link.classList.remove('active');
-                    if (link.getAttribute('href').includes(currentActive) && currentActive !== '') {
+                    // Check if the link's href matches the current active section ID
+                    // Also ensure the "Home Page" button doesn't get the active class for sections
+                    if (link.getAttribute('href').includes(currentActive) && currentActive !== '' && !link.classList.contains('nav-home-button')) {
                         link.classList.add('active');
                     }
                 });
@@ -907,25 +1113,27 @@
             // Smooth scroll for navigation links
             navLinks.forEach(link => {
                 link.addEventListener('click', function(e) {
-                    e.preventDefault();
-                    const targetId = this.getAttribute('href');
-                    const targetElement = document.querySelector(targetId);
-                    if (targetElement) {
-                        // Temporarily remove nav-hidden to get correct offset, then apply scroll
-                        // Or, calculate offset based on an assumed 'visible' nav height
-                        const navWasHidden = nav.classList.contains('nav-hidden');
-                        if (navWasHidden) nav.classList.remove('nav-hidden'); // Show nav before scrolling
-                        
-                        // Give browser a moment to apply class change if it was hidden
-                        requestAnimationFrame(() => {
-                            const offsetTop = targetElement.offsetTop - nav.offsetHeight - 20; // Adjust for sticky nav and a small buffer
-                            window.scrollTo({
-                                top: offsetTop,
-                                behavior: 'smooth'
+                    // Prevent default only if it's an internal anchor link
+                    if (this.getAttribute('href').startsWith('#')) {
+                        e.preventDefault();
+                        const targetId = this.getAttribute('href');
+                        const targetElement = document.querySelector(targetId);
+                        if (targetElement) {
+                            // Temporarily remove nav-hidden to get correct offset, then apply scroll
+                            const navWasHidden = nav.classList.contains('nav-hidden');
+                            if (navWasHidden) nav.classList.remove('nav-hidden'); // Show nav before scrolling
+                            
+                            // Give browser a moment to apply class change if it was hidden
+                            requestAnimationFrame(() => {
+                                const offsetTop = targetElement.offsetTop - nav.offsetHeight - 20; // Adjust for sticky nav and a small buffer
+                                window.scrollTo({
+                                    top: offsetTop,
+                                    behavior: 'smooth'
+                                });
+                                // Optionally, re-hide nav after scroll if it was hidden before the click
+                                // setTimeout(() => { if (navWasHidden) nav.classList.add('nav-hidden'); }, 800); // Re-hide after a short delay
                             });
-                            // Optionally, re-hide nav after scroll if it was hidden before the click
-                            // setTimeout(() => { if (navWasHidden) nav.classList.add('nav-hidden'); }, 800); // Re-hide after a short delay
-                        });
+                        }
                     }
                 });
             });
