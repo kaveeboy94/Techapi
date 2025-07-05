@@ -756,98 +756,138 @@ select option[value=""] {
     width: 100%;
   }
 }
-
+@media (max-width: 768px) {
+  .navbar {
+    display: none;
+  }
+}
  </style>
-</style>
-<script src="https://cdn.tailwindcss.com"></script>
-    <style>
-        /* Custom font for a cleaner look */
-        body {
-            font-family: "Inter", sans-serif;
-        }
-        /* Ensure the select dropdown is styled consistently */
-        select {
-            -webkit-appearance: none; /* Remove default arrow on WebKit browsers */
-            -moz-appearance: none;    /* Remove default arrow on Firefox */
-            appearance: none;         /* Remove default arrow */
-            background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 20 20' fill='white'%3E%3Cpath fill-rule='evenodd' d='M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z' clip-rule='evenodd'/%3E%3C/svg%3E");
-            background-repeat: no-repeat;
-            background-position: right 0.75rem center;
-            background-size: 1.5em 1.5em;
-            padding-right: 2.5rem; /* Make space for the custom arrow */
-        }
-    </style>
+  <style>
+    body {
+      margin: 0;
+      font-family: Arial, sans-serif;
+    }
+
+    /* Hamburger Button */
+    .menu-toggle {
+      font-size: 28px;
+      cursor: pointer;
+      padding: 15px;
+      background-color: #3498db;
+      color: white;
+      border: none;
+      position: fixed;
+      top: 0;
+      left: 0;
+      z-index: 1001;
+    }
+
+    /* Side Menu Styling */
+    .side-menu {
+      height: 100%;
+      width: 0;
+      position: fixed;
+      top: 0;
+      left: 0;
+      background-color: #2c3e50;
+      overflow-x: hidden;
+      transition: 0.3s;
+      padding-top: 60px;
+      z-index: 1000;
+    }
+
+    .side-menu a {
+      padding: 12px 25px;
+      text-decoration: none;
+      font-size: 18px;
+      color: #ecf0f1;
+      display: block;
+      transition: 0.2s;
+    }
+
+    .side-menu a:hover {
+      background-color: #34495e;
+    }
+
+    .side-menu .close-btn {
+      position: absolute;
+      top: 10px;
+      right: 20px;
+      font-size: 28px;
+      color: white;
+      cursor: pointer;
+    }
+
+    /* Hide old <select> on small screens */
+    .navbar {
+      display: none;
+    }
+
+    @media (min-width: 769px) {
+      /* Show original dropdown on desktop */
+      .navbar {
+        display: block;
+        padding: 10px;
+        background-color: #3498db;
+      }
+      .menu-toggle {
+        display: none;
+      }
+    }
+  </style>
 </head>
 <body>
-<body class="bg-gray-100 min-h-screen">
+<!-- Hamburger Menu Button -->
+<button class="menu-toggle" onclick="openMenu()">☰</button>
 
-    <!-- Navigation Bar -->
-    <nav class="navbar relative bg-blue-700 p-4 text-white flex justify-between items-center shadow-lg">
-        <!-- Home Page Button (visible on desktop, part of mobile menu on small screens) -->
-        <!-- This button is now part of the mobile-menu div below -->
+<!-- Side Menu -->
+<div id="sideMenu" class="side-menu">
+  <span class="close-btn" onclick="closeMenu()">×</span>
+  <a href="index.html">Home</a>
+  <a href="#jayawardenapura">University of Sri Jayewardenepura</a>
+  <a href="#colombo">University of Colombo</a>
+  <a href="#kelaniya">University of Kelaniya</a>
+  <a href="#ruhuna">University of Ruhuna</a>
+  <a href="#wayamba">Wayamba University of Sri Lanka</a>
+  <a href="#wellassa">Uva Wellassa University</a>
+  <a href="#rajarata">Rajarata University of Sri Lanka</a>
+  <a href="#jaffna">University of Jaffna</a>
+  <a href="#eastern">Eastern University</a>
+  <a href="#south-eastern">South Eastern University</a>
+  <a href="#vavuniya">University of Vavuniya</a>
+  <a href="#sabara">Sabaragamuwa University</a>
+</div>
 
-        <!-- Hamburger Icon for Mobile (hidden on medium screens and up) -->
-        <button id="mobile-menu-button" class="md:hidden focus:outline-none p-2 rounded-md hover:bg-blue-600 transition duration-300 ease-in-out">
-            <svg class="w-7 h-7" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M4 6h16M4 12h16M4 18h16"></path>
-            </svg>
-        </button>
+<!-- Old Dropdown for PC -->
+<nav class="navbar">
+  <select onchange="location = this.value;">
+    <option value="">Select a University</option>
+    <option value="#jayawardenapura">University of Sri Jayewardenepura</option>
+    <option value="#colombo">University of Colombo</option>
+    <option value="#kelaniya">University of Kelaniya</option>
+    <option value="#ruhuna">University of Ruhuna</option>
+    <option value="#wayamba">Wayamba University of Sri Lanka</option>
+    <option value="#wellassa">Uva Wellassa University</option>
+    <option value="#rajarata">Rajarata University of Sri Lanka</option>
+    <option value="#jaffna">University of Jaffna</option>
+    <option value="#eastern">Eastern University, Sri Lanka</option>
+    <option value="#south-eastern">South Eastern University of Sri Lanka</option>
+    <option value="#vavuniya">University of Vavuniya</option>
+    <option value="#sabara">Sabaragamuwa University of Sri Lanka</option>
+    <option value="index.html">Home</option>
+  </select>
+</nav>
 
-        <!-- Navigation Links Container (hidden by default on mobile, flex on medium screens and up) -->
-        <!-- Added 'items-start' and 'px-4' for left alignment and padding on mobile -->
-        <div id="mobile-menu" class="hidden md:flex md:items-center md:space-x-6 absolute md:relative top-full left-0 w-full md:w-auto bg-blue-700 md:bg-transparent p-4 md:p-0 flex-col md:flex-row rounded-b-lg md:rounded-none z-10 items-start px-4">
-            <!-- Home Page Button - now inside the mobile menu -->
-            <a href="index.html" class="nav-home-button text-lg font-bold rounded-md px-3 py-2 hover:bg-blue-600 transition duration-300 ease-in-out w-full md:w-auto text-left md:text-center mb-2 md:mb-0">Home Page</a>
+<script>
+  function openMenu() {
+    document.getElementById("sideMenu").style.width = "250px";
+  }
 
-            <!-- University Selection Dropdown -->
-            <!-- Removed md:ml-4 as it's now handled by the parent flex container spacing -->
-            <select onchange="location = this.value;" class="bg-blue-800 text-white p-3 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-400 border border-blue-600 text-base shadow-sm hover:bg-blue-900 transition duration-300 ease-in-out w-full md:w-auto text-left">
-                <option value="">Select a University</option>
-                <option value="#jayawardenapura">University of Sri Jayewardenepura</option>
-                <option value="#colombo">University of Colombo</option>
-                <option value="#kelaniya">University of Kelaniya</option>
-                <option value="#ruhuna">University of Ruhuna</option>
-                <option value="#wayamba">Wayamba University of Sri Lanka</option>
-                <option value="#wellassa">Uva Wellassa University</option>
-                <option value="#rajarata">Rajarata University of Sri Lanka</option>
-                <option value="#jaffna">University of Jaffna</option>
-                <option value="#eastern">Eastern University, Sri Lanka</option>
-                <option value="#south-eastern">South Eastern University of Sri Lanka</option>
-                <option value="#vavuniya">University of Vavuniya</option>
-                <option value="#sabara">Sabaragamuwa University of Sri Lanka</option>
-            </select>
-        </div>
-    </nav>
+  function closeMenu() {
+    document.getElementById("sideMenu").style.width = "0";
+  }
+</script>
 
-
-    <script>
-        // JavaScript to toggle the mobile menu visibility
-        document.addEventListener('DOMContentLoaded', function() {
-            const mobileMenuButton = document.getElementById('mobile-menu-button');
-            const mobileMenu = document.getElementById('mobile-menu');
-
-            // Add event listener to the hamburger button
-            mobileMenuButton.addEventListener('click', function() {
-                // Toggle the 'hidden' class to show/hide the menu
-                mobileMenu.classList.toggle('hidden');
-                // Toggle 'flex' and 'flex-col' to ensure it displays as a column when visible
-                mobileMenu.classList.toggle('flex');
-                mobileMenu.classList.toggle('flex-col');
-            });
-
-            // Optional: Close menu when a link/option is selected (for future links)
-            // For the select dropdown, the 'onchange' already handles navigation.
-            // If you had anchor links within the menu, you might add this:
-            // mobileMenu.querySelectorAll('a').forEach(link => {
-            //     link.addEventListener('click', () => {
-            //         if (!mobileMenu.classList.contains('hidden')) {
-            //             mobileMenu.classList.add('hidden');
-            //             mobileMenu.classList.remove('flex', 'flex-col');
-            //         }
-            //     });
-            // });
-        });
-    </script>
     <div class="container hero1">
        <h1 style="
   font-family: 'Poppins', sans-serif;
@@ -861,13 +901,15 @@ select option[value=""] {
 ">
   Discover Technology Degree Programs <br> in Sri Lankan Universities
 </h1>
+ <a href="index.html" class="nav-home-button">Home Page</a>
+
     </div>
 
     <div class="container">
         <h2>
             Explore Specialized Pathways & Career Opportunities
         </h2>
-        <p>Your **Bachelor of Engineering Technology (BET)**, **Bachelor of Information and Communication Technology (BICT)**, and **Bachelor of Biosystem Technology (BBST)** degrees offer specialized pathways, opening doors to diverse and exciting careers in Sri Lanka's rapidly evolving technological landscape.</p>
+        <p>Your Bachelor of Engineering Technology (BET), Bachelor of Information and Communication Technology (BICT)**, and **Bachelor of Biosystem Technology (BBST)** degrees offer specialized pathways, opening doors to diverse and exciting careers in Sri Lanka's rapidly evolving technological landscape.</p>
         <div class="button-container">
             <!-- This button is now redundant if the one in hero is used, but kept for structure -->
             <a href="info2.html" target="_blank" class="main-button">Check Career Pathways</a>
