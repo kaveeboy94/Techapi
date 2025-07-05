@@ -110,7 +110,7 @@
         }
 
         .nav-home-button:hover {
-            background-color: var(--hover-green); /* Darker green on hover */
+            background-color: var(--accent-green); /* Darker green on hover */
             transform: translateY(-2px) scale(1.02);
             box-shadow: 0 6px 15px rgba(46, 204, 113, 0.4); /* Stronger shadow on hover */
         }
@@ -672,30 +672,108 @@
                 line-height: 1.15;
             }
         }
+
     </style>
+    <style>
+select {
+  width: 300px; /* Slightly wider for a more substantial feel */
+  padding: 13px 20px; /* Increased padding for better internal spacing */
+  border: 1px solid #C0D6E4; /* Softer, thinner, more elegant border */
+  border-radius: 24px; /* More significant rounding for a distinctly modern, pill-like shape */
+  /* Deeper, more refined cool-toned gradient for a luxurious feel */
+  background: linear-gradient(180deg, #E8F4FB, #D3E7F7);
+  font-family: 'Inter', 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; /* Added 'Inter' for a modern font choice */
+  font-size: 17px; /* Slightly larger font for improved readability */
+  color: #ffffff; /* Richer, darker blue-grey for main text */
+  cursor: pointer;
+  appearance: none;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  /* Custom arrow: now slightly darker to pop against the lighter background */
+  background-image: url('data:image/svg+xml;utf8,<svg fill="%235B7E9C" height="15" viewBox="0 0 24 24" width="15" xmlns="http://www.w3.org/2000/svg"><path d="M7 10l5 5 5-5z"/></svg>');
+  background-repeat: no-repeat;
+  background-position: right 22px center; /* More generous right padding for the arrow */
+  background-size: 15px; /* Slightly larger arrow */
+  transition:
+    border-color 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94), /* Smoother ease-out transition */
+    box-shadow 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94),
+    background-color 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94),
+    color 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+  /* Enhanced, multi-layered shadow for subtle depth and professionalism */
+  box-shadow:
+    0 1px 3px rgba(0, 0, 0, 0.06),
+    0 3px 8px rgba(0, 0, 0, 0.08);
+}
+
+select:hover {
+  border-color: #7DB0D6; /* A slightly more pronounced, yet still refined, blue on hover */
+  /* More distinct shadow on hover for a clear interactive lift */
+  box-shadow:
+    0 2px 5px rgba(0, 0, 0, 0.1),
+    0 5px 15px rgba(0, 0, 0, 0.15);
+  background: linear-gradient(180deg, #F0F9FF, #E0F0FA); /* Brighter, more inviting hover gradient */
+  color: #094895; /* Slightly darker text for contrast on hover */
+}
+
+select:focus {
+  border-color: #5A9BD6; /* A clear, strong focus blue */
+  /* Prominent but elegant focus ring using box-shadow for a clean outline */
+  box-shadow:
+    0 0 0 3px rgba(90, 155, 214, 0.3), /* Inner glow effect */
+    0 0 0 6px rgba(90, 155, 214, 0.1); /* Outer halo effect */
+  outline: none; /* Remove default outline */
+  background: linear-gradient(180deg, #D9EAFB, #C3D9EF); /* Slightly deeper, more active gradient on focus */
+  color: #1F3045; /* Darkest text for optimal readability on focus */
+}
+
+select option {
+  font-family: 'Inter', 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; /* Consistent font for options */
+  font-size: 16.5px; /* Slightly larger option font for clarity */
+  color: #090b0d; /* Professional text color for options */
+  background-color: #ffffff; /* Pure white background for options */
+  padding: 8px 15px; /* Add some padding to options for better spacing */
+}
+
+select option[value=""] {
+  color: #d6d6d6; /* Softer, muted grey for the placeholder */
+}
+</style>
 </head>
 <body>
 
-    <nav id="top">
+     <nav id="top">
         <a href="index.html" class="nav-home-button">Home Page</a> <!-- Moved and restyled button -->
-        <a href="#jayawardenapura">Sri Jayawardanapura</a>
-        <a href="#colombo">Colombo</a>
-        <a href="#kelaniya">Kelaniya</a>
-        <a href="#ruhuna">Ruhuna</a>
-        <a href="#wayamba">Wayamba</a>
-        <a href="#wellassa">Uva Wellassa</a>
-        <a href="#rajarata">Rajarata</a>
-        <a href="#jaffna">Jaffna</a>
-        <a href="#eastern">Eastern</a>
-        <a href="#south">South Eastern</a>
-        <a href="#vavuniya">Vavuniya</a>
-        <a href="#sabara">Sabaragamuwa</a>
+        <select onchange="location = this.value;">
+        <option value="">Select a University</option>
+        <option value="#jayawardenapura">University of Sri Jayewardenepura</option>
+        <option value="#colombo">University of Colombo</option>
+        <option value="#kelaniya">University of Kelaniya</option>
+        <option value="#ruhuna">University of Ruhuna</option>
+        <option value="#wayamba">Wayamba University of Sri Lanka</option>
+        <option value="#wellassa">Uva Wellassa University</option>
+        <option value="#rajarata">Rajarata University of Sri Lanka</option>
+        <option value="#jaffna">University of Jaffna</option>
+        <option value="#eastern">Eastern University, Sri Lanka</option>
+        <option value="#south-eastern">South Eastern University of Sri Lanka</option>
+        <option value="#vavuniya">University of Vavuniya</option>
+        <option value="#sabara">Sabaragamuwa University of Sri Lanka</option>
+    </select>
     </nav>
 
+
     <div class="container hero1">
-        <h1>
-            Discover Technology Degree Programs <br> in Sri Lankan Universities
-        </h1>
+       <h1 style="
+  font-family: 'Poppins', sans-serif;
+  font-size: 2.5rem;
+  font-weight: 700;
+  color: #4070a3;
+  text-shadow: 1px 1px 6px rgba(0, 123, 255, 0.3);
+  line-height: 1.4;
+  letter-spacing: 0.5px;
+  margin-bottom: 1.5rem;
+">
+  Discover Technology Degree Programs <br> in Sri Lankan Universities
+</h1>
     </div>
 
     <div class="container">
