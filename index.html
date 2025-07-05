@@ -3,11 +3,13 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Technology අපි - Empowering Future Innovators</title>
+  <title>Technology අපි </title>
 
   <!-- Fonts + Icons -->
   <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" integrity="sha512-SnH5WK+bZxgPHs44uWIX+LLJAJ9/2PkPKZ5MlZpntPXa/atSjpbt/wuVANfmXj7HYM+HFCPzswXfQ" crossorigin="anonymous" referrerpolicy="no-referrer" />
+  
 
   <style>
     :root {
@@ -93,7 +95,32 @@
       transition: all 0.3s ease;
       box-shadow: 0 8px 20px rgba(0, 115, 255, 0.2);
     }
+.button1 {
+  display: inline-block;
+  padding: 10px 36px;
+  font-size: 1rem;
+  font-weight: 600;
+  color: #ffffff;
+  /* Light Blue gradient for default state */
+  background: linear-gradient(135deg, #426bc1, #0aa92a); /* Sky Blue to Lighter Blue */
+  text-decoration: none;
+  border-radius: 50px;
+  transition: all 0.3s ease;
+  /* Light Blue shadow for default state */
+  box-shadow: 0 8px 20px rgba(135, 206, 235, 0.4); /* Softer light blue shadow */
+  
+  /* Increase button between distance */
+  margin-bottom: 15px; /* Space below button */
+  margin-right: 15px;  /* Space to the right of button */
+}
 
+.button1:hover {
+  transform: scale(1.05) translateY(-4px);
+  /* Different light blue gradient for hover state */
+  background: linear-gradient(135deg, #0a1880, #87cefa); /* Pale Blue to Sky Blue */
+  /* Light Blue shadow for hover state */
+  box-shadow: 0 12px 30px rgba(173, 216, 230, 0.5); /* More pronounced, very light blue shadow */
+}
     .button:hover {
       transform: scale(1.05) translateY(-4px);
       background: linear-gradient(135deg, var(--pink), var(--secondary));
@@ -169,6 +196,15 @@
     <h3>Discover Your Future in Technology</h3>
     <a href="info.html" class="button"><i class="fas fa-arrow-circle-right"></i> Explore Degrees</a>
   </div>
-
+<div class="container">
+    <div class="icon">
+        <i class="fas fa-book"></i>
+    </div>
+    <h3>You can Visit here get A/L technology Note,Papers and More</h3>
+    <a href="papers.html" class="button1">ET</a>
+    <a href="syllabus.html" class="button1">SFT</a>
+    <a href="resources.html" class="button1">ICT</a>
+</div>
 </body>
 </html>
+
